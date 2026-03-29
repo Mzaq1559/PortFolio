@@ -1,18 +1,17 @@
 /**
  * Real projects — GitHub: https://github.com/Mzaq1559
- * liveUrl: placeholder demos — replace when deployed (e.g. GitHub Pages / Vercel).
  */
 export const projects = [
   {
-    id: 1,
-    title: "E-Shop",
+    id: "blog-website",
+    title: "My Learning Diary",
     description:
-      "Fully responsive e-commerce app with React & Vite: product browsing, cart, simulated auth (localStorage), and an admin dashboard — React Router v6 + Context API.",
-    image: "https://picsum.photos/seed/eshop-mzaq/800/600",
+      "A personal dev blog documenting my learning journey through backend engineering, system design, and software concepts. Articles cover topics like distributed systems, async Python, DSA, and architecture patterns.",
+    image: "https://picsum.photos/seed/blog-mzaq/800/600",
     category: "Web App",
-    technologies: ["React 18", "Vite", "Bootstrap 5", "React Router v6", "Context API"],
-    liveUrl: "https://example.com/?demo=e-shop",
-    githubUrl: "https://github.com/Mzaq1559/E-Shop",
+    technologies: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+    liveUrl: "https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/",
+    githubUrl: "https://github.com/Mzaq1559/Blog_Website-My-Learning-Diary-",
     featured: true
   },
   {
@@ -23,20 +22,20 @@ export const projects = [
     image: "https://picsum.photos/seed/fin-dash-mzaq/800/600",
     category: "Data Science",
     technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "yfinance"],
-    liveUrl: "https://example.com/?demo=financial-dashboard",
+    liveUrl: "https://mzaq1559.github.io/financial_dashboard_Python/",
     githubUrl: "https://github.com/Mzaq1559/financial_dashboard_Python",
     featured: true
   },
   {
     id: 3,
-    title: "Personal Portfolio Hub",
+    title: "E-Shop",
     description:
-      "Vanilla HTML/CSS/JS portfolio: fixed sidebar, project slider, scroll-reveal, custom cursor, and responsive layout — zero frameworks, split into focused CSS/JS modules.",
-    image: "https://picsum.photos/seed/portfolio-hub-mzaq/800/600",
+      "Fully responsive e-commerce app with React & Vite: product browsing, cart, simulated auth (localStorage), and an admin dashboard — React Router v6 + Context API.",
+    image: "https://picsum.photos/seed/eshop-mzaq/800/600",
     category: "Web App",
-    technologies: ["HTML5", "CSS3", "JavaScript"],
-    liveUrl: "https://example.com/?demo=portfolio-hub",
-    githubUrl: "https://github.com/Mzaq1559/PersonalPortfolioHub",
+    technologies: ["React 18", "Vite", "Bootstrap 5", "React Router v6", "Context API"],
+    liveUrl: "https://mzaq1559.github.io/E-Shop/",
+    githubUrl: "https://github.com/Mzaq1559/E-Shop",
     featured: false
   },
   {
@@ -47,7 +46,7 @@ export const projects = [
     image: "https://picsum.photos/seed/textutils-mzaq/800/600",
     category: "Web App",
     technologies: ["React", "JavaScript", "Bootstrap"],
-    liveUrl: "https://example.com/?demo=textutils",
+    liveUrl: "https://mzaq1559.github.io/TextUtils-React/",
     githubUrl: "https://github.com/Mzaq1559/TextUtils-React",
     featured: false
   },
@@ -59,7 +58,7 @@ export const projects = [
     image: "https://picsum.photos/seed/titanic-mzaq/800/600",
     category: "Data Science",
     technologies: ["Python", "Jupyter", "Pandas", "Matplotlib", "Seaborn"],
-    liveUrl: "https://example.com/?demo=titanic-viz",
+    liveUrl: "https://mzaq1559.github.io/Titanic_Visualization_Project/",
     githubUrl: "https://github.com/Mzaq1559/Titanic_Visualization_Project",
     featured: false
   }

@@ -10,6 +10,7 @@ import {
   Mail,
   Github,
   Linkedin,
+  BookOpen,
   BarChart3
 } from 'lucide-react';
 import { useScrollSpy } from '../../../hooks/useScrollSpy';
@@ -25,9 +26,10 @@ const navLinks = [
 ];
 
 const connectLinks = [
+  { name: 'Blog', href: 'https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/', icon: BookOpen },
   { name: 'GitHub', href: 'https://github.com/Mzaq1559', icon: Github },
-  { name: 'LinkedIn', href: 'https://linkedin.com/in/zulqarnain', icon: Linkedin },
-  { name: 'Kaggle', href: 'https://kaggle.com/zulqarnain', icon: BarChart3 }
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/muhammad-zulqarnain-26276b319', icon: Linkedin },
+  { name: 'Kaggle', href: 'https://www.kaggle.com/mzaq1559', icon: BarChart3 }
 ];
 
 const cardStyle: CSSProperties = {
@@ -79,7 +81,7 @@ export function Navbar() {
         {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
 
-      <aside className="hidden md:flex fixed top-0 left-0 z-40 h-screen w-[320px] p-6 min-h-0">
+      <aside className="hidden md:flex sticky top-0 z-40 h-screen w-[320px] p-6 min-h-0">
         <motion.div
           className="flex flex-col h-full min-h-0 w-full max-h-full rounded-3xl px-5 py-6 backdrop-blur-xl overflow-hidden"
           style={cardStyle}
@@ -99,19 +101,26 @@ export function Navbar() {
             />
 
             <h2 className="font-display font-bold leading-snug tracking-tight text-center md:text-left">
-              <span className="block text-[1.1rem] md:text-[1.2rem]" style={{ color: 'var(--hero-name-line1)' }}>
-                Muhammad
-              </span>
-              <span
-                className="block text-[1.3rem] md:text-[1.45rem] mt-0.5"
+              <span className="block text-[1.25rem] md:text-[1.35rem] whitespace-nowrap" 
                 style={{
                   background: 'var(--hero-name-gradient)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
+                  backgroundClip: 'text',
                 }}
               >
-                Zulqarnain
+                Muhammad Zulqarnain
+              </span>
+              <span
+                className="block text-[1.25rem] md:text-[1.35rem] mt-0.5 whitespace-nowrap"
+                style={{
+                  background: 'var(--hero-name-gradient)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Abdullah
               </span>
             </h2>
             <p
@@ -252,19 +261,26 @@ export function Navbar() {
                     }}
                   />
                   <h2 className="font-display font-bold leading-snug text-center">
-                    <span className="block text-[1rem]" style={{ color: 'var(--hero-name-line1)' }}>
-                      Muhammad
-                    </span>
-                    <span
-                      className="block text-[1.15rem] mt-0.5"
+                    <span className="block text-[1.1rem] whitespace-nowrap" 
                       style={{
                         background: 'var(--hero-name-gradient)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text'
+                        backgroundClip: 'text',
                       }}
                     >
-                      Zulqarnain
+                      Muhammad Zulqarnain
+                    </span>
+                    <span
+                      className="block text-[1.1rem] mt-0.5 whitespace-nowrap"
+                      style={{
+                        background: 'var(--hero-name-gradient)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}
+                    >
+                      Abdullah
                     </span>
                   </h2>
                   <p className="font-mono text-[10px] uppercase tracking-wider mt-2 text-center" style={{ color: 'var(--text-secondary)' }}>

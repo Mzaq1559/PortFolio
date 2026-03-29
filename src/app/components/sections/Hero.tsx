@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Download, ArrowRight, Github, Linkedin, BarChart3 } from 'lucide-react';
+import { Download, ArrowRight, Github, Linkedin, BookOpen, BarChart3 } from 'lucide-react';
 import { useTypewriter } from '../../../hooks/useTypewriter';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { BentoWidgets } from '../widgets/BentoWidgets';
 
-const roles = ['Dev & Data Engineer', 'Backend Developer', 'Data Pipeline Builder'];
+const roles = ['Backend Systems', 'Distributed Architecture', 'Scalable Software'];
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/Mzaq1559', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/zulqarnain', label: 'LinkedIn' },
-  { icon: BarChart3, href: 'https://kaggle.com/zulqarnain', label: 'Kaggle' }
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/muhammad-zulqarnain-26276b319', label: 'LinkedIn' },
+  { icon: BookOpen, href: 'https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/', label: 'Blog' },
+  { icon: BarChart3, href: 'https://www.kaggle.com/mzaq1559', label: 'Kaggle' }
 ];
 
 export function Hero() {
@@ -41,13 +42,13 @@ export function Hero() {
       transition: {
         delay: i * 0.05,
         duration: 0.6,
-        ease: [0.43, 0.13, 0.23, 0.96]
+        ease: [0.43, 0.13, 0.23, 0.96] as [number, number, number, number]
       }
     })
   };
 
-  const firstName = 'Muhammad';
-  const lastName = 'Zulqarnain';
+  const firstName = 'Muhammad Zulqarnain';
+  const lastName = 'Abdullah';
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center px-6 md:px-16 lg:px-32 overflow-hidden">
@@ -83,9 +84,9 @@ export function Hero() {
               {displayedText}
             </motion.p>
 
-            <div className="mb-6 overflow-hidden max-w-[22rem] min-[400px]:max-w-none sm:max-w-2xl lg:max-w-3xl">
-              <h1 className="font-display font-bold tracking-tight leading-[1.08] text-[clamp(1.75rem,5vw+0.5rem,4.25rem)]">
-                <span className="block" style={{ color: 'var(--hero-name-line1)' }}>
+            <div className="mb-6 overflow-visible max-w-none sm:max-w-2xl lg:max-w-3xl">
+              <h1 className="font-display font-bold tracking-tight leading-[1.08] text-[clamp(1.5rem,3vw+1rem,3.25rem)]">
+                <span className="block whitespace-nowrap" style={{ color: 'var(--hero-name-line1)' }}>
                   {firstName.split('').map((char, i) => (
                     <motion.span
                       key={`f-${i}`}
@@ -100,7 +101,7 @@ export function Hero() {
                   ))}
                 </span>
                 <motion.span
-                  className="block mt-1 sm:mt-2"
+                  className="block mt-1 sm:mt-2 whitespace-nowrap"
                   style={{
                     background: 'var(--hero-name-gradient)',
                     WebkitBackgroundClip: 'text',
@@ -117,11 +118,11 @@ export function Hero() {
               </h1>
             </div>
 
-            <div className="h-16 md:h-20 mb-6 overflow-hidden">
+            <div className="h-auto min-h-[4rem] md:min-h-[5.5rem] mb-6 flex items-center">
               <AnimatePresence mode="wait">
                 <motion.h2
                   key={currentRoleIndex}
-                  className="font-display text-3xl md:text-5xl font-semibold"
+                  className="font-display text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight"
                   style={{
                     background: 'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-second) 100%)',
                     WebkitBackgroundClip: 'text',

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Play, Pause, Github, Linkedin, BarChart3 } from 'lucide-react';
+import { Play, Pause, Github, Linkedin, BookOpen, BarChart3 } from 'lucide-react';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
 const glass =
@@ -8,8 +8,9 @@ const glass =
 
 const socialPills = [
   { icon: Github, href: 'https://github.com/Mzaq1559', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/zulqarnain', label: 'LinkedIn' },
-  { icon: BarChart3, href: 'https://kaggle.com/zulqarnain', label: 'Kaggle' }
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/muhammad-zulqarnain-26276b319', label: 'LinkedIn' },
+  { icon: BookOpen, href: 'https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/', label: 'Blog' },
+  { icon: BarChart3, href: 'https://www.kaggle.com/mzaq1559', label: 'Kaggle' }
 ];
 
 function pad(n: number) {
@@ -203,7 +204,7 @@ export function BentoWidgets() {
             }}
           />
           <p className="font-display font-semibold text-sm leading-snug" style={{ color: 'var(--text-primary)' }}>
-            E-Shop — React case study
+            Portfolio Website — Vite + React
           </p>
           <p className="font-mono text-[10px] mt-1" style={{ color: 'var(--text-secondary)' }}>
             In progress · 2024

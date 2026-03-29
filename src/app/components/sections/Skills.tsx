@@ -88,9 +88,7 @@ export function Skills() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Tech Marquee */}
-        <TechMarquee />
-      </div>
+        </div>
     </section>
   );
 }
@@ -194,56 +192,3 @@ function SkillCard({ skill, index }: SkillCardProps) {
   );
 }
 
-function TechMarquee() {
-  const prefersReducedMotion = useReducedMotion();
-
-  return (
-    <motion.div
-      className="relative overflow-hidden py-8"
-      initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
-      whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-    >
-      <p 
-        className="font-mono text-sm uppercase tracking-widest mb-6 text-center"
-        style={{ color: 'var(--accent-primary)' }}
-      >
-        Tech I Love
-      </p>
-
-      {/* First Row */}
-      <div className="flex gap-8 mb-4 animate-[marquee_30s_linear_infinite]">
-        {[...techMarquee, ...techMarquee].map((tech, i) => (
-          <div
-            key={`row1-${i}`}
-            className="flex-shrink-0 px-6 py-3 rounded-full backdrop-blur"
-            style={{
-              backgroundColor: 'var(--bg-glass)',
-              border: '1px solid var(--border-subtle)',
-              color: 'var(--text-primary)'
-            }}
-          >
-            <span className="font-mono text-sm whitespace-nowrap">{tech}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Second Row (Reverse) */}
-      <div className="flex gap-8 animate-[marquee_35s_linear_infinite_reverse]">
-        {[...techMarquee, ...techMarquee].map((tech, i) => (
-          <div
-            key={`row2-${i}`}
-            className="flex-shrink-0 px-6 py-3 rounded-full backdrop-blur"
-            style={{
-              backgroundColor: 'var(--bg-glass)',
-              border: '1px solid var(--border-subtle)',
-              color: 'var(--text-primary)'
-            }}
-          >
-            <span className="font-mono text-sm whitespace-nowrap">{tech}</span>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}

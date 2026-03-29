@@ -8,6 +8,8 @@ export function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const prefersReducedMotion = useReducedMotion();
+  
+  if (testimonials.length === 0) return null;
 
   // Auto-play carousel
   useEffect(() => {
