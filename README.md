@@ -1,7 +1,7 @@
 # Interactive Personal Portfolio Website
 A modern, high-performance personal portfolio showcasing technical expertise and professional work.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-teal?style=for-the-badge)](https://mzaq1559.github.io/PersonalPortfolio/)
+[![Live Demo](https://img.shields.io/badge/demo-live-teal?style=for-the-badge)](https://mzaq1559.github.io/PortFolio/)
 [![GitHub](https://img.shields.io/badge/github-repo-black?style=for-the-badge&logo=github)](https://github.com/Mzaq1559/PersonalPortfolio)
 
 ![Portfolio Preview](./public/preview.png)
