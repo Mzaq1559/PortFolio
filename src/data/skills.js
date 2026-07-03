@@ -1,27 +1,33 @@
 export const skills = {
   "Languages": [
-    { name: "C++", level: 95, icon: "💻" },
-    { name: "Python", level: 92, icon: "🐍" },
-    { name: "C#", level: 88, icon: "🎯" },
-    { name: "C", level: 90, icon: "⚙️" }
+    { name: "C++",        proficiency: "Proficient",  icon: "💻" },
+    { name: "Python",     proficiency: "Proficient",  icon: "🐍" },
+    { name: "SQL",        proficiency: "Proficient",  icon: "🗃️" },
+    { name: "TypeScript", proficiency: "Comfortable", icon: "📘" },
+    { name: "C",          proficiency: "Comfortable", icon: "⚙️" }
   ],
-  "Frameworks": [
-    { name: "FastAPI", level: 90, icon: "⚡" },
-    { name: "Django", level: 88, icon: "🎸" },
-    { name: "Flask", level: 85, icon: "🧪" }
+  "Frameworks & Libraries": [
+    { name: "React",        proficiency: "Proficient",  icon: "⚛️" },
+    { name: "FastAPI",      proficiency: "Comfortable", icon: "⚡" },
+    { name: "Tailwind CSS", proficiency: "Comfortable", icon: "🎨" },
+    { name: "Vite",         proficiency: "Comfortable", icon: "🚀" }
+  ],
+  "AI/ML & Data": [
+    { name: "LLM APIs & RAG",                        proficiency: "Comfortable", icon: "🤖" },
+    { name: "LangGraph",                              proficiency: "Learning",    icon: "🕸️" },
+    { name: "Neural Networks (PyTorch/NumPy)",        proficiency: "Learning",    icon: "🧠" }
   ],
   "Infrastructure & Tools": [
-    { name: "SQL Server", level: 88, icon: "🗄️" },
-    { name: "Redis", level: 85, icon: "🧠" },
-    { name: "Docker", level: 90, icon: "🐋" },
-    { name: "Hadoop", level: 82, icon: "🐘" },
-    { name: "Ubuntu", level: 92, icon: "🐧" },
-    { name: "Git", level: 94, icon: "📦" }
+    { name: "Git & GitHub Actions",  proficiency: "Proficient",  icon: "📦" },
+    { name: "SQL Server",            proficiency: "Comfortable", icon: "🗄️" },
+    { name: "WebSockets",            proficiency: "Comfortable", icon: "🔌" },
+    { name: "Linux/Kali (OSINT)",    proficiency: "Learning",    icon: "🐧" }
   ]
 };
 
 export const techMarquee = [
-  "C++", "Python", "C#", "C", "FastAPI", "Django", "Flask", 
-  "SQL Server", "Redis", "Docker", "Hadoop", "Ubuntu", "Git",
-  "Distributed Systems", "System Design", "Kubernetes", "Scalable Software"
+  "C++", "Python", "TypeScript", "SQL", "C",
+  "React", "FastAPI", "Tailwind CSS", "Vite",
+  "LLM APIs & RAG", "LangGraph", "Neural Networks",
+  "Git & GitHub Actions", "SQL Server", "WebSockets", "Linux/Kali"
 ];

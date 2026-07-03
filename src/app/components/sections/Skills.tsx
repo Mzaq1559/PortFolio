@@ -1,18 +1,48 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { skills, techMarquee } from '../../../data/skills';
+import { skills } from '../../../data/skills';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
+
+type ProficiencyLevel = 'Proficient' | 'Comfortable' | 'Learning';
 
 const categories = Object.keys(skills) as Array<keyof typeof skills>;
 const defaultTab = categories[0] as keyof typeof skills;
+
+/* ── Proficiency badge style map ─────────────────────────────── */
+const proficiencyStyles: Record<
+  ProficiencyLevel,
+  { label: string; bg: string; color: string; border: string; borderStyle?: string }
+> = {
+  Proficient: {
+    label: 'Proficient',
+    bg: 'rgba(77, 191, 176, 0.18)',
+    color: '#2a9d8f',
+    border: '1.5px solid #4dbfb0',
+    borderStyle: 'solid',
+  },
+  Comfortable: {
+    label: 'Comfortable',
+    bg: 'transparent',
+    color: '#4dbfb0',
+    border: '1.5px solid #4dbfb0',
+    borderStyle: 'solid',
+  },
+  Learning: {
+    label: 'Learning',
+    bg: 'transparent',
+    color: '#94a3b8',
+    border: '1.5px dashed #94a3b8',
+    borderStyle: 'dashed',
+  },
+};
 
 export function Skills() {
   const [activeTab, setActiveTab] = useState<keyof typeof skills>(defaultTab);
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section 
-      id="skills" 
+    <section
+      id="skills"
       className="py-24 px-6 md:px-16 lg:px-32"
       style={{ backgroundColor: 'var(--bg-primary)' }}
     >
@@ -24,23 +54,23 @@ export function Skills() {
           whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p 
+          <p
             className="font-mono text-sm uppercase tracking-widest mb-4"
             style={{ color: 'var(--accent-primary)' }}
           >
             &lt; MY SKILLS /&gt;
           </p>
-          <h2 
+          <h2
             className="font-display text-4xl md:text-5xl font-bold"
             style={{ color: 'var(--text-primary)' }}
           >
-            Technologies & Tools
+            Technologies &amp; Tools
           </h2>
         </motion.div>
 
         {/* Category Tabs */}
         <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-12"
           initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -50,11 +80,14 @@ export function Skills() {
             <button
               key={category}
               onClick={() => setActiveTab(category)}
-              className="relative px-6 py-3 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300"
+              className="relative px-5 py-2.5 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300"
               style={{
                 color: activeTab === category ? 'var(--bg-primary)' : 'var(--text-secondary)',
-                backgroundColor: activeTab === category ? 'transparent' : 'var(--bg-glass)',
-                border: `1px solid ${activeTab === category ? 'transparent' : 'var(--border-subtle)'}`
+                backgroundColor:
+                  activeTab === category ? 'transparent' : 'var(--bg-glass)',
+                border: `1px solid ${
+                  activeTab === category ? 'transparent' : 'var(--border-subtle)'
+                }`,
               }}
             >
               {activeTab === category && (
@@ -62,7 +95,8 @@ export function Skills() {
                   className="absolute inset-0 rounded-full -z-10"
                   layoutId="activeTab"
                   style={{
-                    background: 'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
+                    background:
+                      'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-second) 100%)',
                   }}
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 />
@@ -88,107 +122,92 @@ export function Skills() {
           </motion.div>
         </AnimatePresence>
 
-        </div>
+        {/* Proficiency Legend */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-4"
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          {(Object.keys(proficiencyStyles) as ProficiencyLevel[]).map((level) => {
+            const s = proficiencyStyles[level];
+            return (
+              <span
+                key={level}
+                className="flex items-center gap-2 px-3 py-1 rounded-full font-mono text-xs"
+                style={{
+                  background: s.bg,
+                  color: s.color,
+                  border: s.border,
+                }}
+              >
+                <span
+                  className="inline-block w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: s.color }}
+                />
+                {s.label}
+              </span>
+            );
+          })}
+        </motion.div>
+      </div>
     </section>
   );
 }
 
+/* ── SkillCard ───────────────────────────────────────────────── */
 interface SkillCardProps {
   skill: {
     name: string;
-    level: number;
+    proficiency: string;
     icon: string;
   };
   index: number;
 }
 
 function SkillCard({ skill, index }: SkillCardProps) {
-  const [progress, setProgress] = useState(0);
-  const [isInView, setIsInView] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        setProgress(skill.level);
-      }, index * 50);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView, skill.level, index]);
+  const level = skill.proficiency as ProficiencyLevel;
+  const style = proficiencyStyles[level] ?? proficiencyStyles['Comfortable'];
 
   return (
     <motion.div
-      ref={cardRef}
-      className="group p-5 rounded-2xl backdrop-blur transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+      className="group p-5 rounded-2xl backdrop-blur transition-all duration-300 hover:-translate-y-2 cursor-pointer flex flex-col gap-3"
       style={{
         backgroundColor: 'var(--bg-glass)',
-        border: '1px solid var(--border-subtle)'
+        border: '1px solid var(--border-subtle)',
       }}
       initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
       animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       whileHover={{
         borderColor: 'var(--accent-primary)',
-        boxShadow: '0 0 20px var(--accent-glow)'
+        boxShadow: '0 0 20px var(--accent-glow)',
       }}
     >
       {/* Icon */}
-      <div className="text-3xl mb-3">{skill.icon}</div>
+      <div className="text-3xl">{skill.icon}</div>
 
       {/* Name */}
-      <h3 
-        className="font-display font-semibold text-base mb-3"
+      <h3
+        className="font-display font-semibold text-base leading-snug"
         style={{ color: 'var(--text-primary)' }}
       >
         {skill.name}
       </h3>
 
-      {/* Progress Bar */}
-      <div 
-        className="h-1.5 rounded-full overflow-hidden"
-        style={{ backgroundColor: 'var(--bg-secondary)' }}
+      {/* Proficiency Badge */}
+      <span
+        className="self-start px-2.5 py-0.5 rounded-full font-mono text-xs tracking-wide"
+        style={{
+          background: style.bg,
+          color: style.color,
+          border: style.border,
+        }}
       >
-        <motion.div
-          className="h-full rounded-full"
-          style={{
-            background: 'linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
-          }}
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-        />
-      </div>
-
-      {/* Percentage */}
-      <p 
-        className="font-mono text-xs mt-2 text-right"
-        style={{ color: 'var(--text-secondary)' }}
-      >
-        {progress}%
-      </p>
+        {style.label}
+      </span>
     </motion.div>
   );
 }
-
