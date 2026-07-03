@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Play, Pause, Github, Linkedin, BookOpen, BarChart3 } from 'lucide-react';
+import { Github, Linkedin, BookOpen, BarChart3 } from 'lucide-react';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
+import { MusicPlayerWidget } from './MusicPlayerWidget';
 
 const glass =
   'rounded-2xl backdrop-blur-xl border transition-all duration-300 hover:shadow-[var(--shadow-soft-hover)]';
@@ -19,22 +20,12 @@ function pad(n: number) {
 
 export function BentoWidgets() {
   const [now, setNow] = useState(() => new Date());
-  const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0.35);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
-
-  useEffect(() => {
-    if (!playing) return;
-    const t = setInterval(() => {
-      setProgress((p) => (p >= 1 ? 0 : p + 0.008));
-    }, 400);
-    return () => clearInterval(t);
-  }, [playing]);
 
   const y = now.getFullYear();
   const m = now.getMonth();
@@ -124,38 +115,7 @@ export function BentoWidgets() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => setPlaying(!playing)}
-            className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 hover:scale-105"
-            style={{
-              background: 'linear-gradient(135deg, var(--accent-primary), #6ec9bd)',
-              color: '#fff',
-              boxShadow: '0 4px 16px var(--accent-glow)'
-            }}
-            aria-label={playing ? 'Pause' : 'Play'}
-          >
-            {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 pl-0.5" />}
-          </button>
-          <div className="min-w-0 flex-1">
-            <p className="font-display font-semibold text-sm truncate" style={{ color: 'var(--text-primary)' }}>
-              Close To You
-            </p>
-            <p className="font-mono text-[10px] uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-              Focus playlist · chill
-            </p>
-            <div className="mt-2 h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(77,191,176,0.2)' }}>
-              <div
-                className="h-full rounded-full transition-[width] duration-300"
-                style={{
-                  width: `${Math.min(100, progress * 100)}%`,
-                  background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-second))'
-                }}
-              />
-            </div>
-          </div>
-        </div>
+        <MusicPlayerWidget />
       </motion.div>
 
       {/* Social pills */}
