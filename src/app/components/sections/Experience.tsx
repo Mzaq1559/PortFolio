@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import React from 'react';
 import { experience, education } from '../../../data/experience';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
@@ -29,32 +30,16 @@ export function Experience() {
             className="font-display text-4xl md:text-5xl font-bold"
             style={{ color: 'var(--text-primary)' }}
           >
-            Experience & Education
+            Practical Experience
           </h2>
         </motion.div>
 
         {/* Experience Timeline */}
         <div className="relative mb-20">
-          {/* Vertical Line */}
-          <div 
-            className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 hidden md:block"
-            style={{
-              background: 'linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
-            }}
-          />
-
-          {/* Mobile Vertical Line */}
-          <div 
-            className="absolute left-6 top-0 bottom-0 w-0.5 md:hidden"
-            style={{
-              background: 'linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
-            }}
-          />
-
           {/* Experience Items */}
           <div className="space-y-12">
             {experience.map((exp, index) => (
-              <ExperienceCard key={exp.id} exp={exp} index={index} />
+              <ExperienceCard key={exp.id} exp={exp} index={index} isLast={index === experience.length - 1} />
             ))}
           </div>
         </div>
@@ -69,7 +54,7 @@ export function Experience() {
             className="font-display text-3xl font-bold mb-8 text-center"
             style={{ color: 'var(--text-primary)' }}
           >
-            Education & Certifications
+            Education
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -88,14 +73,15 @@ interface ExperienceCardProps {
     company: string;
     role: string;
     period: string;
-    logo: string;
+    logo: React.ReactNode;
     responsibilities: string[];
     side: string;
   };
   index: number;
+  isLast: boolean;
 }
 
-function ExperienceCard({ exp, index }: ExperienceCardProps) {
+function ExperienceCard({ exp, index, isLast }: ExperienceCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const isLeft = exp.side === 'left';
 
@@ -103,12 +89,32 @@ function ExperienceCard({ exp, index }: ExperienceCardProps) {
     <div className={`relative ${isLeft ? 'md:pr-1/2' : 'md:pl-1/2'}`}>
       {/* Timeline Dot */}
       <div 
-        className="absolute left-6 md:left-1/2 w-4 h-4 rounded-full -translate-x-1/2 z-10"
+        className="absolute left-6 md:left-1/2 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10"
         style={{
           backgroundColor: 'var(--accent-primary)',
           boxShadow: '0 0 12px var(--accent-primary)'
         }}
       />
+
+      {/* Connecting Line */}
+      {!isLast && (
+        <>
+          <div 
+            className="absolute left-6 md:left-1/2 top-8 w-0.5 -translate-x-1/2 z-0 hidden md:block"
+            style={{
+              height: 'calc(100% + 3rem)',
+              background: 'linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
+            }}
+          />
+          <div 
+            className="absolute left-6 top-8 w-0.5 -translate-x-1/2 z-0 md:hidden"
+            style={{
+              height: 'calc(100% + 3rem)',
+              background: 'linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
+            }}
+          />
+        </>
+      )}
 
       <motion.div
         className={`ml-16 md:ml-0 ${isLeft ? 'md:mr-16' : 'md:ml-16'}`}
@@ -125,7 +131,7 @@ function ExperienceCard({ exp, index }: ExperienceCardProps) {
           }}
         >
           {/* Logo */}
-          <div className="text-4xl mb-4">{exp.logo}</div>
+          <div className="mb-4">{exp.logo}</div>
 
           {/* Company & Role */}
           <div className="mb-3">
@@ -181,7 +187,7 @@ interface EducationCardProps {
     degree: string;
     institution: string;
     year: string;
-    icon: string;
+    icon: React.ReactNode;
   };
   index: number;
 }
@@ -201,7 +207,7 @@ function EducationCard({ edu, index }: EducationCardProps) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
     >
-      <div className="text-4xl mb-4">{edu.icon}</div>
+      <div className="mb-4">{edu.icon}</div>
       
       <h4 
         className="font-display text-lg font-bold mb-2"
