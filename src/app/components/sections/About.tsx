@@ -5,10 +5,9 @@ import { useCountUp } from '../../../hooks/useCountUp';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
 const stats = [
-  { value: 24, label: 'Projects Built', suffix: '+' },
-  { value: 3, label: 'Years Learning', suffix: '+' },
-  { value: 12, label: 'Data Pipelines', suffix: '+' },
-  { value: 5, label: 'Internships & Labs', suffix: '+' }
+  { value: 7, label: 'Projects Built', suffix: '+' },
+  { value: 2, label: 'Years Learning', suffix: '+' },
+  { value: 3.57, label: 'CGPA', suffix: '', display: '3.57' }
 ];
 
 export function About() {
@@ -135,7 +134,7 @@ export function About() {
               >
                 <Rocket className="w-4 h-4" style={{ color: 'var(--accent-primary)' }} />
                 <span className="font-mono text-sm" style={{ color: 'var(--text-primary)' }}>
-                  Backend Architect
+                  Full-Stack Dev · AI/ML in Progress
                 </span>
               </motion.div>
 
@@ -179,25 +178,27 @@ export function About() {
               className="font-display text-4xl md:text-5xl font-bold mb-6"
               style={{ color: 'var(--text-primary)' }}
             >
-              Building Distributed Systems & Scalable Software
+              Bridging Full-Stack Development & AI/ML Engineering
             </h2>
 
             {/* Bio Paragraphs */}
             <div className="space-y-4 mb-8" style={{ color: 'var(--text-secondary)' }}>
               <p className="text-base md:text-lg leading-relaxed">
-                I'm Muhammad Zulqarnain Abdullah, a Computer Science student at UET Taxila focused on backend systems, 
-                distributed architecture, and scalable software. I enjoy building reliable services 
-                and data processing pipelines that handle complexity with elegance.
+                I'm Muhammad Zulqarnain Abdullah, a Computer Science undergraduate at UET Taxila with a full-stack
+                development background, now building toward AI/ML engineering. I enjoy turning ideas into working
+                systems — from serverless web apps to data structures built from scratch — and documenting the
+                process along the way.
               </p>
               <p className="text-base md:text-lg leading-relaxed">
-                My workflow combines systems thinking with practical engineering: designing clean APIs, 
-                implementing sharding/replication strategies, and deploying infrastructure tooling 
-                that ensures high availability and performance for modern applications.
+                My work spans building and shipping full-stack projects (React, FastAPI, SQL), strengthening core
+                CS fundamentals through DSA and competitive problem-solving, and diving into applied AI/ML — from
+                neural network foundations to LLM-powered tools like RAG pipelines. I'm working toward a career
+                in AI/ML engineering, with an eye on graduate study abroad.
               </p>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-3 gap-6">
               {stats.map((stat, index) => (
                 <StatCard
                   key={stat.label}
@@ -220,6 +221,7 @@ interface StatCardProps {
     label: string;
     suffix: string;
     special?: boolean;
+    display?: string;
   };
   startCounting: boolean;
   delay: number;
@@ -246,8 +248,8 @@ function StatCard({ stat, startCounting, delay }: StatCardProps) {
           backgroundClip: 'text'
         }}
       >
-        {stat.special ? '∞' : count}
-        {!stat.special && stat.suffix}
+        {stat.special ? '∞' : stat.display ? stat.display : count}
+        {!stat.special && !stat.display && stat.suffix}
       </div>
       <div 
         className="font-mono text-sm uppercase tracking-wider"
