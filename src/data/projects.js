@@ -10,7 +10,7 @@ export const projects = [
     image: "https://picsum.photos/seed/blog-mzaq/800/600",
     category: "Web App",
     technologies: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
-    liveUrl: "https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/",
+    liveUrl: "https://mzaq1559.github.io/My-Learning-Diary/",
     githubUrl: "https://github.com/Mzaq1559/Blog_Website-My-Learning-Diary-",
     featured: true
   },

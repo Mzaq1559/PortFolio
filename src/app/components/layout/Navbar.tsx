@@ -26,7 +26,7 @@ const navLinks = [
 ];
 
 const connectLinks = [
-  { name: 'Blog', href: 'https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/', icon: BookOpen },
+  { name: 'Blog', href: 'https://mzaq1559.github.io/My-Learning-Diary/', icon: BookOpen },
   { name: 'GitHub', href: 'https://github.com/Mzaq1559', icon: Github },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/muhammad-zulqarnain-26276b319', icon: Linkedin },
   { name: 'Kaggle', href: 'https://www.kaggle.com/mzaq1559', icon: BarChart3 }

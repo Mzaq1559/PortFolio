@@ -9,7 +9,7 @@ const glass =
 const socialPills = [
   { icon: Github, href: 'https://github.com/Mzaq1559', label: 'GitHub' },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/muhammad-zulqarnain-26276b319', label: 'LinkedIn' },
-  { icon: BookOpen, href: 'https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/', label: 'Blog' },
+  { icon: BookOpen, href: 'https://mzaq1559.github.io/My-Learning-Diary/', label: 'Blog' },
   { icon: BarChart3, href: 'https://www.kaggle.com/mzaq1559', label: 'Kaggle' }
 ];
 

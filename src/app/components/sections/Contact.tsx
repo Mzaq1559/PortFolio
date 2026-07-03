@@ -28,7 +28,7 @@ const contactInfo = [
 const socialLinks = [
   { icon: Github, href: 'https://github.com/Mzaq1559', label: 'GitHub' },
   { icon: Linkedin, href: 'https://linkedin.com/in/zulqarnain', label: 'LinkedIn' },
-  { icon: BookOpen, href: 'https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/', label: 'Blog' },
+  { icon: BookOpen, href: 'https://mzaq1559.github.io/My-Learning-Diary/', label: 'Blog' },
   { icon: BarChart3, href: 'https://kaggle.com/zulqarnain', label: 'Kaggle' }
 ];
 
