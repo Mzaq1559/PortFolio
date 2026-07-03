@@ -69,7 +69,7 @@ export function Navbar() {
     <>
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="fixed top-5 left-5 z-50 md:hidden p-3 rounded-2xl transition-all duration-300 hover:shadow-[var(--shadow-soft-hover)]"
+        className="fixed top-5 right-5 z-50 md:hidden p-3 rounded-2xl transition-all duration-300 hover:shadow-[var(--shadow-soft-hover)]"
         style={{
           backgroundColor: 'var(--bg-glass)',
           border: '1px solid var(--border-glass)',
@@ -241,10 +241,10 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.aside
-              className="fixed top-0 left-0 z-40 h-screen w-[min(290px,92vw)] p-4 md:hidden flex flex-col min-h-0"
-              initial={prefersReducedMotion ? { x: -320 } : { x: -320 }}
+              className="fixed top-0 right-0 z-40 h-screen w-[min(290px,92vw)] p-4 md:hidden flex flex-col min-h-0"
+              initial={prefersReducedMotion ? { x: 320 } : { x: 320 }}
               animate={{ x: 0 }}
-              exit={{ x: -320 }}
+              exit={{ x: 320 }}
             >
               <div
                 className="flex flex-col h-full min-h-0 max-h-full rounded-3xl p-5 backdrop-blur-xl overflow-hidden"

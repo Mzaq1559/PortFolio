@@ -71,7 +71,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto">
+      <div className="relative z-10 w-full max-w-7xl mx-auto pt-20 md:pt-0 pb-12 md:pb-0">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-12 items-stretch">
           <div className="md:col-span-3">
             <motion.p
