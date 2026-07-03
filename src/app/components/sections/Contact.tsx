@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MapPin, Clock, Send, CheckCircle, Github, Linkedin, BarChart3 } from 'lucide-react';
+import { Mail, MapPin, Clock, Send, CheckCircle, Github, Linkedin, BookOpen, BarChart3 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
@@ -28,6 +28,7 @@ const contactInfo = [
 const socialLinks = [
   { icon: Github, href: 'https://github.com/Mzaq1559', label: 'GitHub' },
   { icon: Linkedin, href: 'https://linkedin.com/in/zulqarnain', label: 'LinkedIn' },
+  { icon: BookOpen, href: 'https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/', label: 'Blog' },
   { icon: BarChart3, href: 'https://kaggle.com/zulqarnain', label: 'Kaggle' }
 ];
 
