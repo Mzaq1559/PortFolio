@@ -105,7 +105,7 @@ export function BentoWidgets() {
 
       {/* Music player */}
       <motion.div
-        className={`${glass} p-4 shrink-0`}
+        className={`${glass} p-4 flex-1 flex flex-col justify-center`}
         style={{
           background: 'var(--bg-glass)',
           borderColor: 'var(--border-glass)',
@@ -141,69 +141,6 @@ export function BentoWidgets() {
         ))}
       </div>
 
-      {/* Recent + recommendation */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 min-h-0">
-        <motion.div
-          className={`${glass} p-4 flex flex-col`}
-          style={{
-            background: 'var(--bg-glass)',
-            borderColor: 'var(--border-glass)',
-            boxShadow: 'var(--shadow-soft)'
-          }}
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25 }}
-        >
-          <p className="font-mono text-[10px] uppercase tracking-widest mb-2" style={{ color: 'var(--accent-second)' }}>
-            Recent
-          </p>
-          <div
-            className="h-16 rounded-xl mb-2 bg-cover bg-center"
-            style={{
-              backgroundImage: 'linear-gradient(135deg, rgba(77,191,176,0.35), rgba(244,168,184,0.35))'
-            }}
-          />
-          <p className="font-display font-semibold text-sm leading-snug" style={{ color: 'var(--text-primary)' }}>
-            Portfolio Website — Vite + React
-          </p>
-          <p className="font-mono text-[10px] mt-1" style={{ color: 'var(--text-secondary)' }}>
-            In progress · 2024
-          </p>
-        </motion.div>
-
-        <motion.div
-          className={`${glass} p-4 flex flex-col justify-center`}
-          style={{
-            background: 'var(--bg-glass)',
-            borderColor: 'var(--border-glass)',
-            boxShadow: 'var(--shadow-soft)'
-          }}
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <p className="font-mono text-[10px] uppercase tracking-widest mb-2" style={{ color: 'var(--accent-primary)' }}>
-            Pick for you
-          </p>
-          <div className="flex items-center gap-2 flex-wrap">
-            <span
-              className="px-2 py-1 rounded-lg font-mono text-xs font-medium"
-              style={{ background: 'rgba(77,191,176,0.2)', color: 'var(--accent-primary)' }}
-            >
-              TypeScript
-            </span>
-            <span
-              className="px-2 py-1 rounded-lg font-mono text-xs font-medium"
-              style={{ background: 'rgba(244,168,184,0.35)', color: '#b4536b' }}
-            >
-              JavaScript
-            </span>
-          </div>
-          <p className="text-xs mt-2 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            Strong typing + modern ES — a cozy stack for APIs & dashboards.
-          </p>
-        </motion.div>
-      </div>
     </div>
   );
 }

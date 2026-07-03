@@ -27,6 +27,7 @@ export function MusicPlayerWidget() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const prefersReducedMotion = useReducedMotion();
 
@@ -151,9 +152,13 @@ export function MusicPlayerWidget() {
     const audio = audioRef.current;
     if (!audio) return;
 
+    let timeoutId: number;
+
     const onLoaded = () => {
       setDuration(audio.duration);
       setIsReady(true);
+      setHasError(false);
+      clearTimeout(timeoutId);
     };
     const onTimeUpdate = () => setCurrentTime(audio.currentTime);
     const onEnded = () => {
@@ -162,18 +167,33 @@ export function MusicPlayerWidget() {
       cancelAnimationFrame(rafRef.current);
       if (!prefersReducedMotion) drawIdleBars();
     };
+    const onError = () => {
+      console.error(`[MusicPlayer] Audio load error: code ${audio.error?.code}, message: ${audio.error?.message}`);
+      setHasError(true);
+      clearTimeout(timeoutId);
+    };
 
     audio.addEventListener('loadedmetadata', onLoaded);
     audio.addEventListener('timeupdate', onTimeUpdate);
     audio.addEventListener('ended', onEnded);
+    audio.addEventListener('error', onError);
 
     // If metadata already loaded (cached)
-    if (audio.readyState >= 1) onLoaded();
+    if (audio.readyState >= 1) {
+      onLoaded();
+    } else {
+      timeoutId = window.setTimeout(() => {
+        console.error('[MusicPlayer] Audio load timeout - track unavailable or 404');
+        setHasError(true);
+      }, 5000);
+    }
 
     return () => {
       audio.removeEventListener('loadedmetadata', onLoaded);
       audio.removeEventListener('timeupdate', onTimeUpdate);
       audio.removeEventListener('ended', onEnded);
+      audio.removeEventListener('error', onError);
+      clearTimeout(timeoutId);
     };
   }, [prefersReducedMotion, drawIdleBars]);
 
@@ -214,7 +234,7 @@ export function MusicPlayerWidget() {
   return (
     <div className="flex flex-col gap-3">
       {/* hidden audio element */}
-      <audio ref={audioRef} src="/audio/fireworks.mp3" preload="metadata" />
+      <audio ref={audioRef} src={`${import.meta.env.BASE_URL}audio/fireworks.mp3`} preload="metadata" />
 
       {/* track row */}
       <div className="flex items-center gap-3">
@@ -244,7 +264,7 @@ export function MusicPlayerWidget() {
             </p>
           </div>
           <p className="font-mono text-[10px] uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-            {isReady ? 'Focus playlist · chill' : 'Loading…'}
+            {hasError ? 'Track unavailable' : isReady ? 'Focus playlist · chill' : 'Loading…'}
           </p>
         </div>
 
