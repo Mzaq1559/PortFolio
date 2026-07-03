@@ -69,8 +69,9 @@ export function Navbar() {
     <>
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="fixed top-5 right-5 z-50 md:hidden p-3 rounded-2xl transition-all duration-300 hover:shadow-[var(--shadow-soft-hover)]"
+        className="fixed top-5 z-50 md:hidden w-12 h-12 flex items-center justify-center rounded-2xl box-border transition-all duration-300 hover:shadow-[var(--shadow-soft-hover)]"
         style={{
+          right: 'calc(1.25rem + env(safe-area-inset-right))',
           backgroundColor: 'var(--bg-glass)',
           border: '1px solid var(--border-glass)',
           color: 'var(--text-primary)',
