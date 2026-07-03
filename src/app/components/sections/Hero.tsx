@@ -171,8 +171,10 @@ export function Hero() {
                 </span>
               </button>
 
-              <button
-                className="group px-8 py-4 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5"
+              <a
+                href={`${import.meta.env.BASE_URL}cv/Muhammad_Zulqarnain_Abdullah_CV.pdf`}
+                download="Muhammad_Zulqarnain_Abdullah_CV.pdf"
+                className="group px-8 py-4 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-2 no-underline"
                 style={{
                   color: '#b4536b',
                   border: '2px solid var(--accent-second)',
@@ -180,11 +182,9 @@ export function Hero() {
                   boxShadow: 'var(--shadow-soft)'
                 }}
               >
-                <span className="flex items-center gap-2">
-                  Download CV
-                  <Download className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
-                </span>
-              </button>
+                Download CV
+                <Download className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
+              </a>
             </motion.div>
 
             <motion.div
