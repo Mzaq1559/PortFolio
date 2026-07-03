@@ -10,6 +10,7 @@ export const projects = [
     image: "https://picsum.photos/seed/blog-mzaq/800/600",
     category: "Web App",
     technologies: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+    date: "2026",
     liveUrl: "https://mzaq1559.github.io/My-Learning-Diary/",
     githubUrl: "https://github.com/Mzaq1559/Blog_Website-My-Learning-Diary-",
     featured: true
@@ -22,6 +23,7 @@ export const projects = [
     image: "https://picsum.photos/seed/fin-dash-mzaq/800/600",
     category: "Data Science",
     technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "yfinance"],
+    date: "2026",
     liveUrl: "https://mzaq1559.github.io/financial_dashboard_Python/",
     githubUrl: "https://github.com/Mzaq1559/financial_dashboard_Python",
     featured: true
@@ -34,6 +36,7 @@ export const projects = [
     image: "https://picsum.photos/seed/eshop-mzaq/800/600",
     category: "Web App",
     technologies: ["React 18", "Vite", "Bootstrap 5", "React Router v6", "Context API"],
+    date: "2026",
     liveUrl: "https://mzaq1559.github.io/E-Shop/",
     githubUrl: "https://github.com/Mzaq1559/E-Shop",
     featured: false
@@ -46,6 +49,7 @@ export const projects = [
     image: "https://picsum.photos/seed/textutils-mzaq/800/600",
     category: "Web App",
     technologies: ["React", "JavaScript", "Bootstrap"],
+    date: "2026",
     liveUrl: "https://mzaq1559.github.io/TextUtils-React/",
     githubUrl: "https://github.com/Mzaq1559/TextUtils-React",
     featured: false
@@ -58,6 +62,7 @@ export const projects = [
     image: "https://picsum.photos/seed/titanic-mzaq/800/600",
     category: "Data Science",
     technologies: ["Python", "Jupyter", "Pandas", "Matplotlib", "Seaborn"],
+    date: "2026",
     liveUrl: "https://mzaq1559.github.io/Titanic_Visualization_Project/",
     githubUrl: "https://github.com/Mzaq1559/Titanic_Visualization_Project",
     featured: false
