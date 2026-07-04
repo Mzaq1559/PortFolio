@@ -66,5 +66,31 @@ export const projects = [
     liveUrl: "https://mzaq1559.github.io/Titanic_Visualization_Project/",
     githubUrl: "https://github.com/Mzaq1559/Titanic_Visualization_Project",
     featured: false
+  },
+  {
+    id: 6,
+    title: "AutoSolver",
+    description:
+      "An AI-powered delivery dispatch optimization system built for the Meituan 2026 International AI Hackathon. Combines a real-time map interface with a FastAPI backend to solve courier-task assignment problems.",
+    image: "https://picsum.photos/seed/autosolver/800/600",
+    category: "Web App",
+    technologies: ["React", "TypeScript", "Vite", "Tailwind", "Leaflet", "FastAPI", "SQLite", "SQLAlchemy"],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "#",
+    featured: true
+  },
+  {
+    id: 7,
+    title: "RCMS — Rental Car Management System",
+    description:
+      "A full-stack car rental management system built as a DBMS coursework project. Handles bookings, inventory, and transactions with a relational backend.",
+    image: "https://picsum.photos/seed/rcms/800/600",
+    category: "Web App",
+    technologies: ["FastAPI", "pyodbc", "SQL Server", "Docker", "Vanilla JS", "HTML"],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "#",
+    featured: true
   }
 ];
