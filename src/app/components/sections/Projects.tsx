@@ -4,7 +4,7 @@ import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { projects } from '../../../data/projects';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
-const categories = ['All', 'Web App', 'Data Science', 'UI/UX'];
+const categories = ['All', 'AI/ML', 'Web App', 'Data Science', 'UI/UX'];
 
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -109,7 +109,7 @@ export function Projects() {
 
 interface ProjectCardProps {
   project: {
-    id: number;
+    id: number | string;
     title: string;
     description: string;
     image: string;

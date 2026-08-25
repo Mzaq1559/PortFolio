@@ -3,6 +3,28 @@
  */
 export const projects = [
   {
+    id: "medibook-ai",
+    title: "MediBook AI",
+    description:
+      "An AI-powered virtual receptionist for small and medium clinics in Pakistan. Patients describe symptoms in natural language; the system triages urgency via Groq LLM, recommends a specialist, checks live doctor availability, and books appointments with conflict validation. Built as project lead for a 4-person team at the Alibaba Cloud AI Hackathon Pakistan 2026, with a full-stack architecture spanning React frontend, FastAPI backend, and a dedicated AI microservice, all orchestrated via Docker Compose.",
+    image: "https://picsum.photos/seed/medibook-ai/800/600",
+    category: "AI/ML",
+    technologies: [
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker",
+      "Groq LLM",
+      "SQLAlchemy",
+      "JWT"
+    ],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "https://github.com/Mzaq1559/MEDIBOOK_AI",
+    featured: true
+  },
+  {
     id: "blog-website",
     title: "My Learning Diary",
     description:
