@@ -1,4 +1,4 @@
-import { Trophy, BookOpen, Car, GraduationCap, LineChart, ShoppingCart, Type, BarChart } from 'lucide-react';
+import { Trophy, BookOpen, Car, GraduationCap, LineChart, ShoppingCart, Type, BarChart, Stethoscope } from 'lucide-react';
 import React from 'react';
 
 export const experience = [
@@ -17,6 +17,19 @@ export const experience = [
   },
   {
     id: 2,
+    company: "Alibaba Cloud AI Hackathon Pakistan 2026",
+    role: "Built MediBook AI",
+    period: "2026",
+    logo: <Stethoscope className="w-10 h-10" style={{ color: 'var(--accent-primary)' }} />,
+    responsibilities: [
+      "AI-powered virtual receptionist for clinics — natural language symptom triage and appointment booking",
+      "Project lead for a 4-person team; full-stack architecture across React, FastAPI, and a dedicated AI microservice",
+      "Frontend: React, TypeScript, Tailwind · Backend: FastAPI, PostgreSQL, JWT auth · AI: Groq LLM · Deployed via Docker Compose"
+    ],
+    side: "right"
+  },
+  {
+    id: 3,
     company: "My Learning Diary",
     role: "Web App",
     period: "2026",
@@ -25,10 +38,10 @@ export const experience = [
       "Tech: HTML, CSS, JavaScript, GitHub Pages",
       "A personal dev blog documenting my learning journey through backend engineering, system design, and software concepts. Articles cover topics like distributed systems, async Python, DSA, and architecture patterns."
     ],
-    side: "right"
+    side: "left"
   },
   {
-    id: 3,
+    id: 4,
     company: "RCMS — Rental Car Management System",
     role: "Full-Stack App",
     period: "Coursework",
@@ -38,10 +51,10 @@ export const experience = [
       "Backend: FastAPI, pyodbc, SQL Server (Docker)",
       "Frontend: Vanilla JS/HTML"
     ],
-    side: "left"
+    side: "right"
   },
   {
-    id: 4,
+    id: 5,
     company: "Predictive Financial Dashboard",
     role: "Data Science",
     period: "2026",
@@ -50,10 +63,10 @@ export const experience = [
       "Tech: Python, Pandas, NumPy, Matplotlib, yfinance",
       "Stock analytics in pure Python: indicators from scratch (MA, Bollinger, RSI), manual OLS regression, 10k Monte Carlo runs for portfolio optimisation, and 10 auto-generated charts — NumPy/Pandas only."
     ],
-    side: "right"
+    side: "left"
   },
   {
-    id: 5,
+    id: 6,
     company: "E-Shop",
     role: "Web App",
     period: "2026",
@@ -62,10 +75,10 @@ export const experience = [
       "Tech: React 18, Vite, Bootstrap 5, React Router v6, Context API",
       "Fully responsive e-commerce app with React & Vite: product browsing, cart, simulated auth (localStorage), and an admin dashboard — React Router v6 + Context API."
     ],
-    side: "left"
+    side: "right"
   },
   {
-    id: 6,
+    id: 7,
     company: "TextUtils React",
     role: "Web App",
     period: "2026",
@@ -74,10 +87,10 @@ export const experience = [
       "Tech: React, JavaScript, Bootstrap",
       "Minimal React text toolkit: case transforms, whitespace cleanup, word/character counts, reading time, clipboard copy, and dark/light mode — hooks only, no Redux."
     ],
-    side: "right"
+    side: "left"
   },
   {
-    id: 7,
+    id: 8,
     company: "Titanic Visualisation Project",
     role: "Data Science",
     period: "2026",
@@ -86,7 +99,7 @@ export const experience = [
       "Tech: Python, Jupyter, Pandas, Matplotlib, Seaborn",
       "EDA on the Titanic dataset: survival by class and gender, age groups, embarkation ports, fare heatmaps, and family-size effects — reproducible Jupyter workflow."
     ],
-    side: "left"
+    side: "right"
   }
 ];
 
