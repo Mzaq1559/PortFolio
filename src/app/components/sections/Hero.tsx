@@ -71,7 +71,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto pt-20 md:pt-0 pb-12 md:pb-0">
+      <div className="relative z-10 w-full pt-20 md:pt-0 pb-12 md:pb-0">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-12 items-stretch">
           <div className="md:col-span-3">
             <motion.p
@@ -85,7 +85,7 @@ export function Hero() {
             </motion.p>
 
             <div className="mb-6 overflow-visible max-w-none sm:max-w-2xl lg:max-w-3xl">
-              <h1 className="font-display font-bold tracking-tight leading-[1.08] text-[clamp(1.5rem,3vw+1rem,3.25rem)]">
+              <h1 className="font-display font-bold tracking-tight leading-[1.08] text-[clamp(1.25rem,2.5vw+0.75rem,2.5rem)]">
                 <span className="block whitespace-nowrap" style={{ color: 'var(--hero-name-line1)' }}>
                   {firstName.split('').map((char, i) => (
                     <motion.span
@@ -96,7 +96,7 @@ export function Hero() {
                       animate="visible"
                       className="inline-block"
                     >
-                      {char}
+                      {char === ' ' ? '\u00A0' : char}
                     </motion.span>
                   ))}
                 </span>
@@ -122,7 +122,7 @@ export function Hero() {
               <AnimatePresence mode="wait">
                 <motion.h2
                   key={currentRoleIndex}
-                  className="font-display text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight"
+                  className="font-display text-xl md:text-3xl lg:text-4xl font-semibold leading-tight"
                   style={{
                     background: 'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-second) 100%)',
                     WebkitBackgroundClip: 'text',
