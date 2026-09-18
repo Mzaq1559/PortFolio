@@ -82,7 +82,7 @@ export function Skills() {
               onClick={() => setActiveTab(category)}
               className="relative px-5 py-2.5 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300"
               style={{
-                color: activeTab === category ? 'var(--bg-primary)' : 'var(--text-secondary)',
+                color: activeTab === category ? '#ffffff' : 'var(--text-secondary)',
                 backgroundColor:
                   activeTab === category ? 'transparent' : 'var(--bg-glass)',
                 border: `1px solid ${
@@ -92,7 +92,7 @@ export function Skills() {
             >
               {activeTab === category && (
                 <motion.div
-                  className="absolute inset-0 rounded-full -z-10"
+                  className="absolute inset-0 rounded-full z-0"
                   layoutId="activeTab"
                   style={{
                     background:
@@ -101,7 +101,9 @@ export function Skills() {
                   transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                 />
               )}
-              {category}
+              <span className={`relative z-10 ${activeTab === category ? 'font-bold' : ''}`}>
+                {category}
+              </span>
             </button>
           ))}
         </motion.div>
