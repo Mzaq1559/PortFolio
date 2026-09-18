@@ -5,7 +5,7 @@ import { useCountUp } from '../../../hooks/useCountUp';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
 const stats = [
-  { value: 7, label: 'Projects Built', suffix: '+' },
+  { value: 9, label: 'Projects Built', suffix: '+' },
   { value: 2, label: 'Years Learning', suffix: '+' },
   { value: 3.57, label: 'CGPA', suffix: '', display: '3.57' }
 ];

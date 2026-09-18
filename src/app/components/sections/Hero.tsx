@@ -148,7 +148,7 @@ export function Hero() {
             >
               I&apos;m a Computer Science undergraduate building toward a career in AI/ML engineering. My background spans
               full-stack development — React, FastAPI, SQL — and I&apos;m now deepening my skills in machine learning, from
-              neural network fundamentals to LLM-powered applications. I enjoy shipping real projects and documenting
+              neural network fundamentals to LLM-powered applications and computer vision (YOLO, OpenCV). I enjoy shipping real projects and documenting
               what I learn along the way.
             </motion.p>
 
