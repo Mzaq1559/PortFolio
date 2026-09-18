@@ -3,6 +3,32 @@
  */
 export const projects = [
   {
+    id: "siteflowai",
+    title: "SiteFlowAI",
+    description:
+      "A full-stack cloud application deployed to Azure App Service: FastAPI (Uvicorn) backend and Vite/React frontend served from the same container, containerized with Docker and pushed through Azure Container Registry.",
+    image: "https://picsum.photos/seed/siteflowai/800/600",
+    category: "Web App",
+    technologies: ["React", "Vite", "FastAPI", "Docker", "Azure App Service", "Azure Container Registry"],
+    date: "2026",
+    liveUrl: "https://siteflowai.azurewebsites.net",
+    githubUrl: "https://github.com/SidraPervaiz1122/SiteFlowAI",
+    featured: true
+  },
+  {
+    id: "cv-suite",
+    title: "Computer Vision Suite",
+    description:
+      "A cluster of CV systems including AutoVision (real-time vehicle detection, tracking, and speed estimation using YOLO and ByteTrack) and DocVision AI (document scanning and text extraction using OpenCV and OCR).",
+    image: "https://picsum.photos/seed/cvsuite/800/600",
+    category: "AI/ML",
+    technologies: ["Python", "YOLOv8", "ByteTrack", "OpenCV", "Streamlit", "OCR"],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "https://github.com/Mzaq1559/autovision-vehicle-intelligence",
+    featured: true
+  },
+  {
     id: "medibook-ai",
     title: "MediBook AI",
     description:
