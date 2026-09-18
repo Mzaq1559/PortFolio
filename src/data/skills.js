@@ -14,11 +14,13 @@ export const skills = {
   ],
   "AI/ML & Data": [
     { name: "LLM APIs & RAG",                        proficiency: "Comfortable", icon: "🤖" },
+    { name: "Computer Vision (YOLO/OpenCV)",          proficiency: "Comfortable", icon: "👁️" },
     { name: "LangGraph",                              proficiency: "Learning",    icon: "🕸️" },
     { name: "Neural Networks (PyTorch/NumPy)",        proficiency: "Learning",    icon: "🧠" }
   ],
   "Infrastructure & Tools": [
     { name: "Git & GitHub Actions",  proficiency: "Proficient",  icon: "📦" },
+    { name: "Docker & Azure",        proficiency: "Comfortable", icon: "🐳" },
     { name: "SQL Server",            proficiency: "Comfortable", icon: "🗄️" },
     { name: "WebSockets",            proficiency: "Comfortable", icon: "🔌" },
     { name: "Linux/Kali (OSINT)",    proficiency: "Learning",    icon: "🐧" }
@@ -29,5 +31,6 @@ export const techMarquee = [
   "C++", "Python", "TypeScript", "SQL", "C",
   "React", "FastAPI", "Tailwind CSS", "Vite",
   "LLM APIs & RAG", "LangGraph", "Neural Networks",
-  "Git & GitHub Actions", "SQL Server", "WebSockets", "Linux/Kali"
+  "Git & GitHub Actions", "Docker & Azure", "SQL Server", "WebSockets", "Linux/Kali",
+  "Computer Vision"
 ];
