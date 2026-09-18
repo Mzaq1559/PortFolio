@@ -16,16 +16,29 @@ export const projects = [
     featured: true
   },
   {
-    id: "cv-suite",
-    title: "Computer Vision Suite",
+    id: "vehicle-vision",
+    title: "Vehicle Vision",
     description:
-      "A cluster of CV systems including AutoVision (real-time vehicle detection, tracking, and speed estimation using YOLO and ByteTrack) and DocVision AI (document scanning and text extraction using OpenCV and OCR).",
-    image: "https://picsum.photos/seed/cvsuite/800/600",
+      "Real-time vehicle detection, multi-object tracking, and speed estimation using YOLOv8 and ByteTrack, applied across two implementations: general vehicle intelligence (AutoVision) and live traffic monitoring (TrafficVision).",
+    image: "https://picsum.photos/seed/vehiclevision/800/600",
     category: "AI/ML",
-    technologies: ["Python", "YOLOv8", "ByteTrack", "OpenCV", "Streamlit", "OCR"],
+    technologies: ["Python", "YOLOv8", "ByteTrack", "Streamlit"],
     date: "2026",
     liveUrl: "#",
     githubUrl: "https://github.com/Mzaq1559/autovision-vehicle-intelligence",
+    featured: true
+  },
+  {
+    id: "docvision-ai",
+    title: "DocVision AI",
+    description:
+      "CV-based document scanner and intelligence app — document scanning, perspective correction, and text extraction using OpenCV and OCR, with a clean Streamlit interface.",
+    image: "https://picsum.photos/seed/docvision-ai/800/600",
+    category: "AI/ML",
+    technologies: ["Python", "OpenCV", "OCR", "Streamlit"],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "https://github.com/Mzaq1559/docvision-ai",
     featured: true
   },
   {
