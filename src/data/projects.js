@@ -153,5 +153,70 @@ export const projects = [
     liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/IDBS-Lab_Project",
     featured: true
+  },
+  {
+    id: "student-management-api",
+    title: "Student Management REST API",
+    description:
+      "A clean RESTful API for managing student information built with .NET 10 and C#. Demonstrates modern ASP.NET Core practices, complete CRUD operations, and includes interactive Swagger/OpenAPI documentation.",
+    image: "https://picsum.photos/seed/student-api/800/600",
+    category: "Backend",
+    technologies: ["C#", ".NET 10", "ASP.NET Core", "Swagger"],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "https://github.com/Mzaq1559/Student-Management-REST-API",
+    featured: false
+  },
+  {
+    id: "ecommerce-hadoop",
+    title: "E-Commerce Behavior Analysis",
+    description:
+      "An end-to-end big data ETL pipeline processing ~100,000 user behavior records. Leverages the Hadoop ecosystem with Hive external tables for distributed storage and Python for generating conversion funnel and promotional effect insights.",
+    image: "https://picsum.photos/seed/ecommerce-hadoop/800/600",
+    category: "Data Engineering",
+    technologies: ["Hadoop", "Hive", "Python", "Pandas", "Matplotlib", "Seaborn"],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "https://github.com/Mzaq1559/ecommerce-behavior-hadoop-analysis",
+    featured: false
+  },
+  {
+    id: "go-assistant",
+    title: "Go Assistant",
+    description:
+      "A floating screen overlay app for WeChat that captures live Go board states and queries Claude AI to recommend the best next move. Built with Flutter, featuring a responsive UI and custom floating bubble interaction.",
+    image: "https://picsum.photos/seed/go-assistant/800/600",
+    category: "Mobile App",
+    technologies: ["Flutter", "Dart", "Claude AI API"],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "https://github.com/Mzaq1559/Go_Assistant",
+    featured: false
+  },
+  {
+    id: "airline-reservation",
+    title: "Airline Reservation System",
+    description:
+      "A console-based CLI application to manage flight bookings across multiple destinations. Built as a Data Structures & Algorithms coursework project implementing manual singly linked lists and arrays.",
+    image: "https://picsum.photos/seed/airline-reservation/800/600",
+    category: "Software",
+    technologies: ["C++", "Data Structures", "Linked Lists"],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "https://github.com/Mzaq1559/DSA-Lab_Project",
+    featured: false
+  },
+  {
+    id: "atm-simulation",
+    title: "Enhanced ATM Simulation",
+    description:
+      "An interactive command-line application simulating a full ATM machine to demonstrate core OOP principles (encapsulation, inheritance, polymorphism). Features secure authentication, multi-threaded logging, and a dedicated admin mode.",
+    image: "https://picsum.photos/seed/atm-simulation/800/600",
+    category: "Software",
+    technologies: ["C++11", "OOP", "Multithreading"],
+    date: "2026",
+    liveUrl: "#",
+    githubUrl: "https://github.com/Mzaq1559/OOP-Lab_Project",
+    featured: false
   }
 ];
