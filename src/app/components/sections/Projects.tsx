@@ -114,7 +114,7 @@ interface ProjectCardProps {
     description: string;
     image: string;
     technologies: string[];
-    liveUrl: string;
+    liveUrl: string | null;
     githubUrl: string;
   };
   index: number;
@@ -161,21 +161,23 @@ function ProjectCard({ project, index, featured }: ProjectCardProps) {
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
             transition={{ duration: 0.3 }}
           >
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full font-mono text-sm transition-all duration-300 hover:scale-110"
-              style={{
-                backgroundColor: 'var(--accent-primary)',
-                color: 'var(--bg-primary)'
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <span className="flex items-center gap-2">
-                Live Demo <ExternalLink className="w-4 h-4" />
-              </span>
-            </a>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-full font-mono text-sm transition-all duration-300 hover:scale-110"
+                style={{
+                  backgroundColor: 'var(--accent-primary)',
+                  color: 'var(--bg-primary)'
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="flex items-center gap-2">
+                  Live Demo <ExternalLink className="w-4 h-4" />
+                </span>
+              </a>
+            )}
             <a
               href={project.githubUrl}
               target="_blank"

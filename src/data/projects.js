@@ -24,7 +24,7 @@ export const projects = [
     category: "AI/ML",
     technologies: ["Python", "YOLOv8", "ByteTrack", "Streamlit"],
     date: "2026",
-    liveUrl: "#",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/autovision-vehicle-intelligence",
     featured: true
   },
@@ -37,7 +37,7 @@ export const projects = [
     category: "AI/ML",
     technologies: ["Python", "OpenCV", "OCR", "Streamlit"],
     date: "2026",
-    liveUrl: "#",
+    liveUrl: "https://docvision-ai-hyzsm6qrsrdpap4ptkw4ga.streamlit.app/",
     githubUrl: "https://github.com/Mzaq1559/docvision-ai",
     featured: true
   },
@@ -59,7 +59,7 @@ export const projects = [
       "JWT"
     ],
     date: "2026",
-    liveUrl: "#",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/MEDIBOOK_AI",
     featured: true
   },
@@ -73,7 +73,7 @@ export const projects = [
     technologies: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
     date: "2026",
     liveUrl: "https://mzaq1559.github.io/My-Learning-Diary/",
-    githubUrl: "https://github.com/Mzaq1559/Blog_Website-My-Learning-Diary-",
+    githubUrl: "https://github.com/Mzaq1559/My-Learning-Diary",
     featured: true
   },
   {
@@ -85,7 +85,7 @@ export const projects = [
     category: "Data Science",
     technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "yfinance"],
     date: "2026",
-    liveUrl: "https://mzaq1559.github.io/financial_dashboard_Python/",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/financial_dashboard_Python",
     featured: true
   },
@@ -98,7 +98,7 @@ export const projects = [
     category: "Web App",
     technologies: ["React 18", "Vite", "Bootstrap 5", "React Router v6", "Context API"],
     date: "2026",
-    liveUrl: "https://mzaq1559.github.io/E-Shop/",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/E-Shop",
     featured: false
   },
@@ -124,7 +124,7 @@ export const projects = [
     category: "Data Science",
     technologies: ["Python", "Jupyter", "Pandas", "Matplotlib", "Seaborn"],
     date: "2026",
-    liveUrl: "https://mzaq1559.github.io/Titanic_Visualization_Project/",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/Titanic_Visualization_Project",
     featured: false
   },
@@ -137,8 +137,8 @@ export const projects = [
     category: "Web App",
     technologies: ["React", "TypeScript", "Vite", "Tailwind", "Leaflet", "FastAPI", "SQLite", "SQLAlchemy"],
     date: "2026",
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: null,
+    githubUrl: "https://github.com/Mzaq1559/Autosolver-dispatch",
     featured: true
   },
   {
@@ -150,8 +150,8 @@ export const projects = [
     category: "Web App",
     technologies: ["FastAPI", "pyodbc", "SQL Server", "Docker", "Vanilla JS", "HTML"],
     date: "2026",
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: null,
+    githubUrl: "https://github.com/Mzaq1559/IDBS-Lab_Project",
     featured: true
   }
 ];
