@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Rocket, Zap } from 'lucide-react';
 import { useCountUp } from '../../../hooks/useCountUp';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
+import { Live2DCompanion } from '../widgets/Live2DCompanion';
 
 const stats = [
   { value: 10, label: 'Projects Built', suffix: '+' },
@@ -40,20 +41,21 @@ export function About() {
     <section 
       id="about" 
       ref={sectionRef}
-      className="py-24 px-6 md:px-16 lg:px-32 relative"
+      className="py-24 px-6 md:px-10 relative overflow-hidden w-full max-w-full"
       style={{ backgroundColor: 'var(--bg-secondary)' }}
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-          {/* Left - Illustration */}
+      <div className="max-w-[1400px] mx-auto w-full min-w-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-[1400px]:grid-cols-[260px_minmax(0,1fr)_300px] gap-8 md:gap-12 min-[1400px]:gap-10 items-center min-w-0">
+          
+          {/* Left - Isometric Illustration Card */}
           <motion.div
-            className="relative"
+            className="order-3 lg:order-3 min-[1400px]:order-1 col-span-1 relative w-full max-w-[320px] mx-auto min-[1400px]:max-w-none min-w-0"
             initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -40 }}
             whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative">
+            <div className="relative my-6 min-[1400px]:my-0">
               {/* Illustration with Gradient Border */}
               <div 
                 className="relative rounded-2xl overflow-hidden p-1"
@@ -122,7 +124,7 @@ export function About() {
 
               {/* Floating Badges */}
               <motion.div
-                className="absolute -top-4 -right-4 px-4 py-2 rounded-full backdrop-blur-lg flex items-center gap-2 animate-[float_3s_ease-in-out_infinite]"
+                className="absolute -top-5 left-0 right-0 mx-auto w-fit max-w-[calc(100%-0.5rem)] px-3 py-1.5 rounded-full backdrop-blur-lg flex items-center justify-center gap-1.5 animate-[float_3s_ease-in-out_infinite] whitespace-nowrap text-xs overflow-hidden"
                 style={{
                   backgroundColor: 'var(--bg-glass)',
                   border: '1px solid var(--border-subtle)'
@@ -132,14 +134,14 @@ export function About() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <Rocket className="w-4 h-4" style={{ color: 'var(--accent-primary)' }} />
-                <span className="font-mono text-sm" style={{ color: 'var(--text-primary)' }}>
+                <Rocket className="w-3.5 h-3.5 shrink-0" style={{ color: 'var(--accent-primary)' }} />
+                <span className="font-mono text-xs truncate" style={{ color: 'var(--text-primary)' }}>
                   Full-Stack Dev · AI/ML in Progress
                 </span>
               </motion.div>
 
               <motion.div
-                className="absolute -bottom-4 -left-4 px-4 py-2 rounded-full backdrop-blur-lg flex items-center gap-2 animate-[float_3s_ease-in-out_infinite]"
+                className="absolute -bottom-5 left-0 right-0 mx-auto w-fit max-w-[calc(100%-0.5rem)] px-3 py-1.5 rounded-full backdrop-blur-lg flex items-center justify-center gap-1.5 animate-[float_3s_ease-in-out_infinite] whitespace-nowrap text-xs overflow-hidden"
                 style={{
                   backgroundColor: 'var(--bg-glass)',
                   border: '1px solid var(--border-subtle)',
@@ -150,18 +152,17 @@ export function About() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 }}
               >
-                <Zap className="w-4 h-4" style={{ color: 'var(--accent-second)' }} />
-                <span className="font-mono text-sm" style={{ color: 'var(--text-primary)' }}>
+                <Zap className="w-3.5 h-3.5 shrink-0" style={{ color: 'var(--accent-second)' }} />
+                <span className="font-mono text-xs truncate" style={{ color: 'var(--text-primary)' }}>
                   UET Taxila · CS
                 </span>
               </motion.div>
             </div>
-          </motion.div>
-
-          {/* Right - Content */}
+          </motion.div>          {/* Center - Content */}
           <motion.div
-            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 40 }}
-            whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            className="order-1 lg:order-1 min-[1400px]:order-2 col-span-1 lg:col-span-2 min-[1400px]:col-span-1 max-w-2xl mx-auto w-full min-w-0"
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+            whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
@@ -175,7 +176,7 @@ export function About() {
 
             {/* Heading */}
             <h2 
-              className="font-display text-4xl md:text-5xl font-bold mb-6"
+              className="font-display text-3xl xl:text-4xl font-bold mb-6"
               style={{ color: 'var(--text-primary)' }}
             >
               Bridging Full-Stack Development & AI/ML Engineering
@@ -183,13 +184,13 @@ export function About() {
 
             {/* Bio Paragraphs */}
             <div className="space-y-4 mb-8" style={{ color: 'var(--text-secondary)' }}>
-              <p className="text-base md:text-lg leading-relaxed">
+              <p className="text-base leading-relaxed">
                 I'm Muhammad Zulqarnain Abdullah, a Computer Science undergraduate at UET Taxila with a full-stack
                 development background, now building toward AI/ML engineering. I enjoy turning ideas into working
                 systems — from serverless web apps to data structures built from scratch — and documenting the
                 process along the way.
               </p>
-              <p className="text-base md:text-lg leading-relaxed">
+              <p className="text-base leading-relaxed">
                 My work spans building and shipping full-stack projects (React, FastAPI, SQL), strengthening core
                 CS fundamentals through DSA and competitive problem-solving, and diving into applied AI/ML — from
                 neural network foundations to LLM-powered tools like RAG pipelines. I'm working toward a career
@@ -198,7 +199,7 @@ export function About() {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-4">
               {stats.map((stat, index) => (
                 <StatCard
                   key={stat.label}
@@ -209,6 +210,33 @@ export function About() {
               ))}
             </div>
           </motion.div>
+
+          {/* Right - Live2D Anime Companion */}
+          <motion.div
+            className="order-2 lg:order-2 min-[1400px]:order-3 col-span-1 relative w-full max-w-[320px] mx-auto min-[1400px]:max-w-none min-w-0"
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 40 }}
+            whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div
+              className="rounded-3xl backdrop-blur-lg p-4 flex flex-col items-center"
+              style={{
+                backgroundColor: 'var(--bg-glass)',
+                border: '1px solid var(--border-glass)',
+                boxShadow: 'var(--shadow-soft)'
+              }}
+            >
+              <Live2DCompanion />
+              <p
+                className="font-mono text-[11px] uppercase tracking-widest mt-3 text-center"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                Interactive · move your cursor
+              </p>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
@@ -240,7 +268,7 @@ function StatCard({ stat, startCounting, delay }: StatCardProps) {
       transition={{ delay }}
     >
       <div 
-        className="font-display text-3xl md:text-4xl font-bold mb-2"
+        className="font-display text-2xl md:text-3xl font-bold mb-2"
         style={{
           background: 'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-second) 100%)',
           WebkitBackgroundClip: 'text',
@@ -252,7 +280,7 @@ function StatCard({ stat, startCounting, delay }: StatCardProps) {
         {!stat.special && !stat.display && stat.suffix}
       </div>
       <div 
-        className="font-mono text-sm uppercase tracking-wider"
+        className="font-mono text-xs uppercase tracking-wider"
         style={{ color: 'var(--text-secondary)' }}
       >
         {stat.label}
