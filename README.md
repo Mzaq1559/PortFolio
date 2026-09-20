@@ -13,6 +13,7 @@ This project is an interactive, premium personal portfolio designed and built by
 - **Animated Hero Section**: Dynamic entry animations with typewriter effects and smooth transitions.
 - **Bento Widget Layout**: Modern grid-based interactive widgets for social links and status.
 - **Custom Cursor**: Clean, high-performance dot cursor with smooth movement tracking.
+- **Interactive Live2D Companion**: Chibi anime companion in the About section that follows the cursor in real time.
 - **Skills Section**: Categorized technical stack with animated progress bars.
 - **Filtered Projects**: Portfolio showcase with real-time category filtering (Web, Data Science, etc.).
 - **Experience Timeline**: Detailed professional and educational history in a structured vertical layout.
