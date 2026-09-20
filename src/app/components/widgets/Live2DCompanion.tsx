@@ -93,7 +93,7 @@ export function Live2DCompanion() {
             });
         }
       },
-      { rootMargin: '300px' }
+      { rootMargin: '100px' }
     );
 
     if (wrapperRef.current) {
