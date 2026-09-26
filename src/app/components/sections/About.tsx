@@ -5,8 +5,6 @@ import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { Live2DCompanion } from '../widgets/Live2DCompanion';
 
 const stats = [
-  { value: 10, label: 'Projects Built', suffix: '+' },
-  { value: 2, label: 'Years Learning', suffix: '+' },
   { value: 3.57, label: 'CGPA', suffix: '', display: '3.57' }
 ];
 
@@ -93,22 +91,19 @@ export function About() {
               className="font-display text-3xl xl:text-4xl font-bold mb-6"
               style={{ color: 'var(--text-primary)' }}
             >
-              Bridging Full-Stack Development & AI/ML Engineering
+              From Software Development to AI/ML
             </h2>
 
             {/* Bio Paragraphs */}
             <div className="space-y-4 mb-8" style={{ color: 'var(--text-secondary)' }}>
               <p className="text-base leading-relaxed">
-                I'm Muhammad Zulqarnain Abdullah, a Computer Science undergraduate at UET Taxila with a full-stack
-                development background, now building toward AI/ML engineering. I enjoy turning ideas into working
-                systems — from serverless web apps to data structures built from scratch — and documenting the
-                process along the way.
+                I started with programming and software development, building applications across C++, Python, JavaScript, React, FastAPI, and .NET. As I became more interested in how intelligent systems work, my focus gradually shifted toward machine learning and AI.
               </p>
               <p className="text-base leading-relaxed">
-                My work spans building and shipping full-stack projects (React, FastAPI, SQL), strengthening core
-                CS fundamentals through DSA and competitive problem-solving, and diving into applied AI/ML — from
-                neural network foundations to LLM-powered tools like RAG pipelines. I'm working toward a career
-                in AI/ML engineering, with an eye on graduate study abroad.
+                I&apos;m now strengthening my ML foundations, experimenting with computer vision and LLM systems, and building practical projects around what I learn. My current interests include computer vision, machine learning and deep learning, RAG/LLM systems, and agentic AI. I learn by building and document that process publicly through my projects and Learning Diary.
+              </p>
+              <p className="text-base leading-relaxed">
+                I&apos;m currently pursuing my BS Computer Science at UET Taxila (2024–2028), with a 3.57/4.00 CGPA.
               </p>
             </div>
 
