@@ -5,7 +5,7 @@ import { useTypewriter } from '../../../hooks/useTypewriter';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { BentoWidgets } from '../widgets/BentoWidgets';
 
-const roles = ['Full-Stack Developer', 'AI/ML Engineer in Training', 'CS Student @ UET Taxila'];
+const roles = ['Software Developer', 'AI/ML Engineer in Progress', 'CS Student @ UET Taxila'];
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/Mzaq1559', label: 'GitHub' },
@@ -146,10 +146,7 @@ export function Hero() {
               animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
               transition={{ delay: 2.4, duration: 0.6 }}
             >
-              I&apos;m a Computer Science undergraduate building toward a career in AI/ML engineering. My background spans
-              full-stack development — React, FastAPI, SQL — and I&apos;m now deepening my skills in machine learning, from
-              neural network fundamentals to LLM-powered applications and computer vision (YOLO, OpenCV). I enjoy shipping real projects and documenting
-              what I learn along the way.
+              I&apos;m a 5th-semester Computer Science student at UET Taxila building software while moving deeper into AI and machine learning. I&apos;ve worked across full-stack development, backend systems, computer vision, and LLM-powered applications, and I&apos;m currently strengthening my ML foundations by implementing concepts from scratch.
             </motion.p>
 
             <motion.div
