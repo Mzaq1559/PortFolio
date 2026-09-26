@@ -1,4 +1,3 @@
-@import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
 
@@ -56,12 +55,28 @@
   }
 }
 
+/*
+ * The page background used to be `background-attachment: fixed` directly on
+ * <body>. That forces the browser to repaint the full-viewport background on
+ * every scroll frame (it can't be handled by the compositor the way a
+ * transform can), which is a common source of scroll jank — especially on
+ * mobile. A fixed, negative-z-index pseudo-element gives the same visual
+ * result (a gradient that stays put while content scrolls over it) while
+ * staying off the scroll-repaint path.
+ */
 body {
+  position: relative;
   font-family: var(--font-body);
-  background: var(--bg-page-gradient);
-  background-attachment: fixed;
   color: var(--text-primary);
   overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg-page-gradient);
 }
 
 h1, h2, h3, h4, h5, h6 {

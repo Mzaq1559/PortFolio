@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
-import avatarImg from '../../../avatar.png';
+import avatarImg from '../../../avatar.webp';
 
 declare global {
   interface Window {

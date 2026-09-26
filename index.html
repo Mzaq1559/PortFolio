@@ -7,6 +7,21 @@
       <title>PortFolio</title>
       <link rel="icon" type="image/png" href="/favicon.png" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+      <!--
+        Fonts were previously pulled in via @import inside index.css. An
+        @import is only discovered once the browser has fetched and started
+        parsing that CSS file, which serializes: HTML -> CSS -> font CSS ->
+        font files. Declaring the font stylesheet here lets the browser's
+        preload scanner find it immediately, in parallel with everything
+        else, which is a real first-paint/font-swap win.
+      -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      />
     </head>
 
     <body>

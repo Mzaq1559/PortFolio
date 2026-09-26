@@ -8,11 +8,18 @@ export function ScrollToTop() {
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 400);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setIsVisible(window.scrollY > 400);
+        ticking = false;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

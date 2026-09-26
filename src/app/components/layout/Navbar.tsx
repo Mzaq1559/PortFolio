@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useScrollSpy } from '../../../hooks/useScrollSpy';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
-import avatarImg from '../../../avatar.png';
+import avatarImg from '../../../avatar.webp';
 
 const navLinks = [
   { name: 'Home', href: '#hero', icon: Home },

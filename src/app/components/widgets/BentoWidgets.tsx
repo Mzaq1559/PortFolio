@@ -23,8 +23,36 @@ export function BentoWidgets() {
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const t = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(t);
+    // The clock only displays HH:MM, so we only need to tick once a minute —
+    // and we pause entirely while the tab is hidden instead of ticking (and
+    // re-rendering) in the background forever.
+    let timeoutId;
+
+    const scheduleNextTick = () => {
+      const msUntilNextMinute = 60000 - (Date.now() % 60000);
+      timeoutId = setTimeout(() => {
+        setNow(new Date());
+        scheduleNextTick();
+      }, msUntilNextMinute);
+    };
+
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        setNow(new Date());
+        clearTimeout(timeoutId);
+        scheduleNextTick();
+      } else {
+        clearTimeout(timeoutId);
+      }
+    };
+
+    scheduleNextTick();
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    return () => {
+      clearTimeout(timeoutId);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
   }, []);
 
   const y = now.getFullYear();
