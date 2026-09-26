@@ -5,7 +5,9 @@ import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { Live2DCompanion } from '../widgets/Live2DCompanion';
 
 const stats = [
-  { value: 3.57, label: 'CGPA', suffix: '', display: '3.57' }
+  { value: 5, label: 'Semester', suffix: 'th' },
+  { value: 3.57, label: 'CGPA', suffix: '', display: '3.57' },
+  { value: 2028, label: 'Expected Graduation', suffix: '' }
 ];
 
 export function About() {
