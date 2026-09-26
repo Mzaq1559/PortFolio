@@ -128,7 +128,7 @@ export function Navbar() {
               className="font-mono text-[11px] uppercase mt-2 tracking-wider text-center md:text-left"
               style={{ color: 'var(--text-secondary)' }}
             >
-              Dev & Data Engineer
+              Software Developer · AI/ML Engineer in Progress
             </p>
             <p className="font-mono text-[11px] mt-1 text-center md:text-left" style={{ color: 'var(--text-secondary)' }}>
               UET Taxila · CS
@@ -285,7 +285,7 @@ export function Navbar() {
                     </span>
                   </h2>
                   <p className="font-mono text-[10px] uppercase tracking-wider mt-2 text-center" style={{ color: 'var(--text-secondary)' }}>
-                    Dev & Data Engineer
+                    Software Developer · AI/ML Engineer in Progress
                   </p>
                 </div>
 
