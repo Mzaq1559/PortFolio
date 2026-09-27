@@ -6,7 +6,7 @@ import { Live2DCompanion } from '../widgets/Live2DCompanion';
 
 const stats = [
   { value: 5, label: 'Semester', suffix: 'th' },
-  { value: 3.57, label: 'CGPA', suffix: '', display: '3.57' },
+  { value: 3.60, label: 'CGPA', suffix: '', display: '3.60' },
   { value: 2028, label: 'Expected Graduation', suffix: '' }
 ];
 
@@ -105,7 +105,7 @@ export function About() {
                 I&apos;m now strengthening my ML foundations, experimenting with computer vision and LLM systems, and building practical projects around what I learn. My current interests include computer vision, machine learning and deep learning, RAG/LLM systems, and agentic AI. I learn by building and document that process publicly through my projects and Learning Diary.
               </p>
               <p className="text-base leading-relaxed">
-                I&apos;m currently pursuing my BS Computer Science at UET Taxila (2024–2028), with a 3.57/4.00 CGPA.
+                I&apos;m currently pursuing my BS Computer Science at UET Taxila (2024–2028), with a 3.60/4.00 CGPA.
               </p>
             </div>
 
