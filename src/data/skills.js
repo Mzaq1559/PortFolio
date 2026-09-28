@@ -3,57 +3,63 @@ export const skills = {
     { name: "C++", proficiency: "Proficient", icon: "💻" },
     { name: "Python", proficiency: "Proficient", icon: "🐍" },
     { name: "SQL", proficiency: "Proficient", icon: "🗃️" },
-    { name: "TypeScript", proficiency: "Comfortable", icon: "📘" },
     { name: "JavaScript", proficiency: "Comfortable", icon: "🟨" },
-    { name: "C", proficiency: "Comfortable", icon: "⚙️" },
+    { name: "TypeScript", proficiency: "Comfortable", icon: "📘" },
     { name: "C#", proficiency: "Comfortable", icon: "🟣" },
+    { name: "C", proficiency: "Comfortable", icon: "⚙️" },
     { name: "Kotlin", proficiency: "Learning", icon: "📱" },
     { name: "AVR Assembly", proficiency: "Learning", icon: "📟" }
   ],
-  "Frameworks & Libraries": [
-    { name: "React 18", proficiency: "Proficient", icon: "⚛️" },
+  "Web & .NET": [
+    { name: "React", proficiency: "Comfortable", icon: "⚛️" },
     { name: "FastAPI", proficiency: "Comfortable", icon: "⚡" },
+    { name: "ASP.NET Core", proficiency: "Learning", icon: "🟣" },
     { name: "Vite", proficiency: "Comfortable", icon: "🚀" },
     { name: "Tailwind CSS", proficiency: "Comfortable", icon: "🎨" },
+    { name: "Bootstrap", proficiency: "Comfortable", icon: "🅱️" },
     { name: "Framer Motion", proficiency: "Comfortable", icon: "🎬" },
-    { name: "React Router v6", proficiency: "Comfortable", icon: "🛣️" },
-    { name: "Bootstrap 5", proficiency: "Comfortable", icon: "🅱️" },
-    { name: "Context API", proficiency: "Comfortable", icon: "📦" }
+    { name: "React Router", proficiency: "Comfortable", icon: "🛣️" },
+    { name: "Express.js", proficiency: "Learning", icon: "🟢" }
   ],
   "AI/ML & Data": [
-    { name: "YOLOv8", proficiency: "Comfortable", icon: "👁️" },
-    { name: "ByteTrack", proficiency: "Learning", icon: "👣" },
+    { name: "Machine Learning", proficiency: "Learning", icon: "🤖" },
+    { name: "Deep Learning", proficiency: "Learning", icon: "🧠" },
+    { name: "Computer Vision", proficiency: "Comfortable", icon: "👁️" },
+    { name: "YOLO", proficiency: "Comfortable", icon: "🎯" },
+    { name: "ByteTrack", proficiency: "Comfortable", icon: "👣" },
     { name: "OpenCV", proficiency: "Comfortable", icon: "🖼️" },
-    { name: "OCR", proficiency: "Comfortable", icon: "🔤" },
-    { name: "Streamlit", proficiency: "Comfortable", icon: "🌊" },
-    { name: "Groq LLM", proficiency: "Comfortable", icon: "🧠" },
+    { name: "RAG Pipelines", proficiency: "Comfortable", icon: "📚" },
+    { name: "LLM Applications", proficiency: "Comfortable", icon: "💬" },
+    { name: "Transformers", proficiency: "Learning", icon: "🤗" },
+    { name: "PEFT / Fine-tuning", proficiency: "Learning", icon: "🔧" },
+    { name: "Agentic AI", proficiency: "Learning", icon: "🕸️" },
     { name: "Pandas", proficiency: "Proficient", icon: "🐼" },
     { name: "NumPy", proficiency: "Proficient", icon: "🔢" },
     { name: "Matplotlib", proficiency: "Comfortable", icon: "📊" },
-    { name: "Seaborn", proficiency: "Comfortable", icon: "📉" },
     { name: "Jupyter", proficiency: "Proficient", icon: "📓" },
-    { name: "Hadoop", proficiency: "Learning", icon: "🐘" }
+    { name: "Streamlit", proficiency: "Comfortable", icon: "🌊" }
   ],
-  "Infrastructure & Tools": [
+  "Backend, Cloud & Tools": [
     { name: "Docker", proficiency: "Comfortable", icon: "🐳" },
-    { name: "Azure App Service", proficiency: "Comfortable", icon: "☁️" },
+    { name: "Azure Container Apps", proficiency: "Comfortable", icon: "☁️" },
     { name: "Azure Container Registry", proficiency: "Comfortable", icon: "📦" },
     { name: "GitHub Actions", proficiency: "Proficient", icon: "⚙️" },
     { name: "GitHub Pages", proficiency: "Comfortable", icon: "🌐" },
-    { name: "Microsoft SQL Server", proficiency: "Comfortable", icon: "🗄️" },
     { name: "PostgreSQL", proficiency: "Comfortable", icon: "🐘" },
+    { name: "Microsoft SQL Server", proficiency: "Comfortable", icon: "🗄️" },
+    { name: "SQLite", proficiency: "Comfortable", icon: "🪶" },
     { name: "SQLAlchemy", proficiency: "Comfortable", icon: "🔗" },
-    { name: "pyodbc", proficiency: "Comfortable", icon: "🔌" },
-    { name: "JWT", proficiency: "Comfortable", icon: "🔑" },
+    { name: "Auth0 / OAuth 2.1", proficiency: "Comfortable", icon: "🔐" },
     { name: "Git", proficiency: "Proficient", icon: "📦" },
-    { name: "Leaflet", proficiency: "Comfortable", icon: "🗺️" },
-    { name: "EmailJS", proficiency: "Comfortable", icon: "📧" }
+    { name: "n8n", proficiency: "Comfortable", icon: "🔄" },
+    { name: "Chroma", proficiency: "Learning", icon: "🗂️" }
   ]
 };
 
 export const techMarquee = [
-  "C++", "Python", "TypeScript", "SQL", "JavaScript",
-  "React 18", "FastAPI", "Tailwind CSS", "Vite", "Framer Motion",
-  "YOLOv8", "OpenCV", "Pandas", "Groq LLM",
-  "Docker", "GitHub Actions", "Azure App Service", "Git", "PostgreSQL"
+  "C++", "Python", "TypeScript", "JavaScript", "C#",
+  "React", "FastAPI", "ASP.NET Core", "Tailwind CSS", "Vite",
+  "Machine Learning", "Computer Vision", "YOLO", "OpenCV",
+  "RAG", "Transformers", "Agentic AI",
+  "Docker", "Azure Container Apps", "GitHub Actions", "PostgreSQL", "Git"
 ];
