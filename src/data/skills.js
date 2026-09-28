@@ -10,10 +10,9 @@ export const skills = {
     { name: "Kotlin", proficiency: "Learning", icon: "📱" },
     { name: "AVR Assembly", proficiency: "Learning", icon: "📟" }
   ],
-  "Web & .NET": [
+  "Web Development": [
     { name: "React", proficiency: "Comfortable", icon: "⚛️" },
     { name: "FastAPI", proficiency: "Comfortable", icon: "⚡" },
-    { name: "ASP.NET Core", proficiency: "Learning", icon: "🟣" },
     { name: "Vite", proficiency: "Comfortable", icon: "🚀" },
     { name: "Tailwind CSS", proficiency: "Comfortable", icon: "🎨" },
     { name: "Bootstrap", proficiency: "Comfortable", icon: "🅱️" },
@@ -58,7 +57,7 @@ export const skills = {
 
 export const techMarquee = [
   "C++", "Python", "TypeScript", "JavaScript", "C#",
-  "React", "FastAPI", "ASP.NET Core", "Tailwind CSS", "Vite",
+  "React", "FastAPI", "Tailwind CSS", "Vite", "Express.js",
   "Machine Learning", "Computer Vision", "YOLO", "OpenCV",
   "RAG", "Transformers", "Agentic AI",
   "Docker", "Azure Container Apps", "GitHub Actions", "PostgreSQL", "Git"
