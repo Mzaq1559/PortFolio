@@ -15,6 +15,7 @@ const socialLinks = [
 
 export function Hero() {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [spotlight, setSpotlight] = useState({ x: 50, y: 35 });
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -36,9 +37,29 @@ export function Hero() {
   const lastName = 'Abdullah';
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center px-6 md:px-16 lg:px-24 xl:px-32 overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center px-6 md:px-16 lg:px-24 xl:px-32 overflow-hidden"
+      onPointerMove={(event) => {
+        if (prefersReducedMotion) return;
+        const rect = event.currentTarget.getBoundingClientRect();
+        setSpotlight({
+          x: ((event.clientX - rect.left) / rect.width) * 100,
+          y: ((event.clientY - rect.top) / rect.height) * 100
+        });
+      }}
+    >
       {/* Lightweight spotlight/grid background — inspired by modern spotlight hero patterns. */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          animate={prefersReducedMotion ? {} : { left: `${spotlight.x}%`, top: `${spotlight.y}%` }}
+          transition={{ type: 'spring', stiffness: 80, damping: 24, mass: 0.35 }}
+          style={{
+            background: 'radial-gradient(circle, rgba(77,191,176,0.16) 0%, rgba(77,191,176,0.06) 32%, transparent 70%)',
+            filter: 'blur(12px)'
+          }}
+        />
         <div
           className="absolute -top-48 left-1/2 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full blur-3xl opacity-25"
           style={{ background: 'radial-gradient(circle, var(--accent-primary), transparent 68%)' }}
