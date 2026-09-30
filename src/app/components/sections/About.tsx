@@ -112,7 +112,7 @@ interface StatCardProps {
   delay: number;
 }
 
-function StatCard({ stat, startCounting, delay }: StatCardProps) {
+function StatCard({ stat, delay }: StatCardProps) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
