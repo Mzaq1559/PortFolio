@@ -163,7 +163,7 @@ export const projects = [
     category: "Backend",
     technologies: ["C#", ".NET 10", "ASP.NET Core", "Swagger"],
     date: "2026",
-    liveUrl: "#",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/Student-Management-REST-API",
     featured: false
   },
@@ -176,7 +176,7 @@ export const projects = [
     category: "Data Engineering",
     technologies: ["Hadoop", "Hive", "Python", "Pandas", "Matplotlib", "Seaborn"],
     date: "2026",
-    liveUrl: "#",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/ecommerce-behavior-hadoop-analysis",
     featured: false
   },
@@ -189,7 +189,7 @@ export const projects = [
     category: "Mobile App",
     technologies: ["Flutter", "Dart", "Claude AI API"],
     date: "2026",
-    liveUrl: "#",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/Go_Assistant",
     featured: false
   },
@@ -202,7 +202,7 @@ export const projects = [
     category: "Software",
     technologies: ["C++", "Data Structures", "Linked Lists"],
     date: "2026",
-    liveUrl: "#",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/DSA-Lab_Project",
     featured: false
   },
@@ -215,7 +215,7 @@ export const projects = [
     category: "Software",
     technologies: ["C++11", "OOP", "Multithreading"],
     date: "2026",
-    liveUrl: "#",
+    liveUrl: null,
     githubUrl: "https://github.com/Mzaq1559/OOP-Lab_Project",
     featured: false
   }

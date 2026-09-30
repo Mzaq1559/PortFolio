@@ -22,6 +22,7 @@ const navLinks = [
   { name: 'About', href: '#about', icon: User },
   { name: 'Skills', href: '#skills', icon: Code2 },
   { name: 'Projects', href: '#projects', icon: FolderKanban },
+  { name: 'Experience', href: '#experience', icon: Code2 },
   { name: 'Contact', href: '#contact', icon: Mail }
 ];
 
@@ -44,6 +45,19 @@ export function Navbar() {
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setIsMobileMenuOpen(false);
@@ -57,7 +71,8 @@ export function Navbar() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      element.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
       setIsMobileMenuOpen(false);
     }
   };
@@ -77,14 +92,16 @@ export function Navbar() {
           color: 'var(--text-primary)',
           boxShadow: 'var(--shadow-soft)'
         }}
-        aria-label="Toggle sidebar"
+        aria-label={isMobileMenuOpen ? "Close sidebar" : "Open sidebar"}
+        aria-expanded={isMobileMenuOpen}
+        aria-controls="mobile-navigation"
       >
         {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
 
       <aside className="hidden md:flex sticky top-0 z-40 h-screen w-[320px] p-6 min-h-0">
         <motion.div
-          className="flex flex-col h-full min-h-0 w-full max-h-full rounded-3xl px-5 py-6 backdrop-blur-xl overflow-hidden"
+          className="flex flex-col h-full min-h-0 w-full max-h-full rounded-3xl px-5 py-6 overflow-hidden"
           style={cardStyle}
           initial={prefersReducedMotion ? {} : { opacity: 0, x: -20 }}
           animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
@@ -198,16 +215,7 @@ export function Navbar() {
                       border: '1px solid var(--border-glass)',
                       color: 'var(--text-secondary)'
                     }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = 'var(--accent-primary)';
-                      e.currentTarget.style.borderColor = 'rgba(77, 191, 176, 0.5)';
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.75)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.color = 'var(--text-secondary)';
-                      e.currentTarget.style.borderColor = 'var(--border-glass)';
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.45)';
-                    }}
+
                   >
                     <Icon className="w-4 h-4 shrink-0" />
                     {link.name}
@@ -234,7 +242,7 @@ export function Navbar() {
         {isMobileMenuOpen && (
           <>
             <motion.div
-              className="fixed inset-0 z-30 md:hidden backdrop-blur-sm"
+              className="fixed inset-0 z-30 md:hidden"
               style={{ backgroundColor: 'rgba(30, 41, 59, 0.2)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -242,13 +250,15 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.aside
-              className="fixed top-0 right-0 z-40 h-screen w-[min(290px,92vw)] p-4 md:hidden flex flex-col min-h-0"
+              id="mobile-navigation"
+              aria-label="Mobile navigation"
+              className="fixed top-0 right-0 z-40 h-dvh w-[min(290px,92vw)] p-4 md:hidden flex flex-col min-h-0"
               initial={prefersReducedMotion ? { x: 320 } : { x: 320 }}
               animate={{ x: 0 }}
               exit={{ x: 320 }}
             >
               <div
-                className="flex flex-col h-full min-h-0 max-h-full rounded-3xl p-5 backdrop-blur-xl overflow-hidden"
+                className="flex flex-col h-full min-h-0 max-h-full rounded-3xl p-5 overflow-hidden"
                 style={cardStyle}
               >
                 <div className="shrink-0">

@@ -1,40 +1,40 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { projects } from '../../../data/projects';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 
-const categories = ['All', 'AI/ML', 'Web App', 'Data Science', 'UI/UX'];
+const categories = ['All', ...Array.from(new Set(projects.map((project) => project.category)))];
 
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
   const prefersReducedMotion = useReducedMotion();
 
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
+  const filteredProjects =
+    activeFilter === 'All'
+      ? projects
+      : projects.filter((project) => project.category === activeFilter);
 
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       className="py-24 px-6 md:px-16 lg:px-32"
       style={{ backgroundColor: 'var(--bg-secondary)' }}
     >
       <div className="max-w-7xl mx-auto">
-        {/* Section Heading */}
         <motion.div
           className="text-center mb-12"
-          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p 
+          <p
             className="font-mono text-sm uppercase tracking-widest mb-4"
             style={{ color: 'var(--accent-primary)' }}
           >
             &lt; MY WORK /&gt;
           </p>
-          <h2 
+          <h2
             className="font-display text-4xl md:text-5xl font-bold mb-6"
             style={{ color: 'var(--text-primary)' }}
           >
@@ -42,23 +42,26 @@ export function Projects() {
           </h2>
         </motion.div>
 
-        {/* Filter Tabs */}
         <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
-          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          className="flex flex-wrap justify-center gap-3 mb-12"
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
         >
           {categories.map((category) => (
             <button
               key={category}
+              type="button"
               onClick={() => setActiveFilter(category)}
-              className="relative px-6 py-2 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300"
+              aria-pressed={activeFilter === category}
+              className="relative px-5 py-2.5 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
               style={{
-                color: activeFilter === category ? 'var(--text-primary)' : 'var(--text-secondary)',
-                backgroundColor: activeFilter === category ? 'var(--accent-primary)' : 'var(--bg-glass)',
-                border: `1px solid ${activeFilter === category ? 'var(--accent-primary)' : 'var(--border-subtle)'}`
+                color: activeFilter === category ? 'var(--bg-primary)' : 'var(--text-secondary)',
+                backgroundColor:
+                  activeFilter === category ? 'var(--accent-primary)' : 'var(--bg-glass)',
+                border: `1px solid ${
+                  activeFilter === category ? 'var(--accent-primary)' : 'var(--border-subtle)'
+                }`,
               }}
             >
               {category}
@@ -66,41 +69,42 @@ export function Projects() {
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
-        <motion.div 
+        <motion.div
           layout
           className="grid grid-flow-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
         >
-          {filteredProjects.map((project, index) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              index={index}
-              featured={project.featured}
-            />
-          ))}
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                featured={project.featured}
+              />
+            ))}
+          </AnimatePresence>
         </motion.div>
 
-        {/* View All Button */}
         <motion.div
           className="text-center"
-          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <button
-            className="group px-8 py-4 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300 hover:shadow-[0_0_30px_var(--accent-glow)]"
+          <a
+            href="https://github.com/Mzaq1559?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 px-8 py-4 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
             style={{
               color: 'var(--accent-primary)',
               border: '2px solid var(--accent-primary)',
-              backgroundColor: 'transparent'
+              backgroundColor: 'transparent',
             }}
           >
-            <span className="flex items-center gap-2">
-              View All Projects
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </span>
-          </button>
+            View All Repositories
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
         </motion.div>
       </div>
     </section>
@@ -128,104 +132,108 @@ function ProjectCard({ project, index, featured }: ProjectCardProps) {
   return (
     <motion.div
       layout
-      className={`group relative rounded-2xl overflow-hidden ${featured ? 'md:col-span-2' : ''}`}
+      className={`group relative rounded-2xl overflow-hidden ${
+        featured ? 'md:col-span-2' : ''
+      }`}
       style={{
         backgroundColor: 'var(--bg-glass)',
-        border: '1px solid var(--border-subtle)'
+        border: '1px solid var(--border-subtle)',
       }}
-      initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 40 }}
-      whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      whileHover={prefersReducedMotion ? {} : { y: -8 }}
+      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -12 }}
+      transition={{ duration: 0.35, delay: prefersReducedMotion ? 0 : Math.min(index * 0.04, 0.2) }}
+      whileHover={prefersReducedMotion ? {} : { y: -6 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={featured ? 'md:flex md:flex-row' : ''}>
-        {/* Image */}
-        <div className={`relative overflow-hidden ${featured ? 'md:w-1/2' : 'h-56'}`}>
+        <div className={`relative overflow-hidden ${
+          featured ? 'md:w-1/2 aspect-[4/3]' : 'h-56'
+        }`}>
           <motion.img
             src={project.image}
-            alt={project.title}
+            alt={`${project.title} project preview`}
             className="w-full h-full object-cover"
+            width={800}
+            height={600}
             loading="lazy"
-            animate={prefersReducedMotion ? {} : { scale: isHovered ? 1.05 : 1 }}
+            decoding="async"
+            animate={prefersReducedMotion ? {} : { scale: isHovered ? 1.03 : 1 }}
             transition={{ duration: 0.3 }}
           />
-
-          {/* Hover Overlay */}
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center gap-4"
-            style={{ backgroundColor: 'rgba(10, 10, 15, 0.9)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full font-mono text-sm transition-all duration-300 hover:scale-110"
-                style={{
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--bg-primary)'
-                }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <span className="flex items-center gap-2">
-                  Live Demo <ExternalLink className="w-4 h-4" />
-                </span>
-              </a>
-            )}
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full transition-all duration-300 hover:scale-110"
-              style={{
-                backgroundColor: 'var(--bg-glass)',
-                border: '1px solid var(--border-subtle)'
-              }}
-              onClick={(e) => e.stopPropagation()}
-              aria-label="View on GitHub"
-            >
-              <Github className="w-5 h-5" style={{ color: 'var(--text-primary)' }} />
-            </a>
-          </motion.div>
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                'linear-gradient(180deg, transparent 50%, rgba(15, 23, 42, 0.2) 100%)',
+            }}
+          />
         </div>
 
-        {/* Content */}
-        <div className={`p-6 ${featured ? 'md:w-1/2 md:flex md:flex-col md:justify-center' : ''}`}>
-          <h3 
+        <div
+          className={`p-6 ${
+            featured ? 'md:w-1/2 md:flex md:flex-col md:justify-center' : ''
+          }`}
+        >
+          <h3
             className="font-display text-xl md:text-2xl font-bold mb-3"
             style={{ color: 'var(--text-primary)' }}
           >
             {project.title}
           </h3>
-          
-          <p 
+
+          <p
             className="text-sm md:text-base mb-4 leading-relaxed"
             style={{ color: 'var(--text-secondary)' }}
           >
             {project.description}
           </p>
 
-          {/* Tech Tags */}
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech) => (
               <span
                 key={tech}
                 className="px-3 py-1 rounded-full font-mono text-xs"
                 style={{
-                  backgroundColor: 'rgba(110, 231, 247, 0.1)',
+                  backgroundColor: 'rgba(77, 191, 176, 0.1)',
                   color: 'var(--accent-primary)',
-                  border: '1px solid rgba(110, 231, 247, 0.2)'
+                  border: '1px solid rgba(77, 191, 176, 0.2)',
                 }}
               >
                 {tech}
               </span>
             ))}
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-3">
+            {project.liveUrl && /^https?:\/\//.test(project.liveUrl) && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wide transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+                style={{
+                  backgroundColor: 'var(--accent-primary)',
+                  color: 'var(--bg-primary)',
+                }}
+              >
+                Live Demo <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wide transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+              style={{
+                color: 'var(--text-primary)',
+                border: '1px solid var(--border-subtle)',
+                backgroundColor: 'rgba(255,255,255,0.45)',
+              }}
+            >
+              GitHub <Github className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
       </div>

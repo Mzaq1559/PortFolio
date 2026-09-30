@@ -23,8 +23,8 @@ const proficiencyStyles: Record<
   Comfortable: {
     label: 'Comfortable',
     bg: 'transparent',
-    color: '#4dbfb0',
-    border: '1.5px solid #4dbfb0',
+    color: '#0f766e',
+    border: '1.5px solid #0f766e',
     borderStyle: 'solid',
   },
   Learning: {
@@ -70,6 +70,8 @@ export function Skills() {
 
         {/* Category Tabs */}
         <motion.div
+          role="tablist"
+          aria-label="Skill categories"
           className="flex flex-wrap justify-center gap-3 mb-12"
           initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
@@ -80,6 +82,9 @@ export function Skills() {
             <button
               key={category}
               onClick={() => setActiveTab(category)}
+              role="tab"
+              aria-selected={activeTab === category}
+              tabIndex={activeTab === category ? 0 : -1}
               className="relative px-5 py-2.5 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300"
               style={{
                 color: activeTab === category ? '#ffffff' : 'var(--text-secondary)',
@@ -175,7 +180,7 @@ function SkillCard({ skill, index }: SkillCardProps) {
 
   return (
     <motion.div
-      className="group p-5 rounded-2xl backdrop-blur transition-all duration-300 hover:-translate-y-2 cursor-pointer flex flex-col gap-3"
+      className="group p-5 rounded-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer flex flex-col gap-3"
       style={{
         backgroundColor: 'var(--bg-glass)',
         border: '1px solid var(--border-subtle)',
