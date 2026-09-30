@@ -1,84 +1,85 @@
-# Interactive Personal Portfolio Website
-A modern, high-performance personal portfolio showcasing technical expertise and professional work.
+# Muhammad Zulqarnain Abdullah — Portfolio
 
-[![Live Demo](https://img.shields.io/badge/demo-live-teal?style=for-the-badge)](https://mzaq1559.github.io/PortFolio/)
-[![GitHub](https://img.shields.io/badge/github-repo-black?style=for-the-badge&logo=github)](https://github.com/Mzaq1559/PersonalPortfolio)
+A modern personal portfolio built with React, TypeScript, Vite, Tailwind CSS, and Motion. It presents my software-development work, AI/ML projects, technical skills, experience, and learning journey.
 
-![Portfolio Preview](./public/preview.png)
+**Live site:** https://mzaq1559.github.io/PortFolio/
 
-## About the Project
-This project is an interactive, premium personal portfolio designed and built by **Muhammad Zulqarnain Abdullah**. It serves as a central hub to showcase expertise in backend systems, distributed architecture, and scalable software engineering. The site emphasizes performant UI/UX with a focus on technical depth and clean aesthetics.
+## What it includes
 
-## Features
-- **Animated Hero Section**: Dynamic entry animations with typewriter effects and smooth transitions.
-- **Bento Widget Layout**: Modern grid-based interactive widgets for social links and status.
-- **Custom Cursor**: Clean, high-performance dot cursor with smooth movement tracking.
-- **Interactive Live2D Companion**: Chibi anime companion in the About section that follows the cursor in real time.
-- **Skills Section**: Categorized technical stack with animated progress bars.
-- **Filtered Projects**: Portfolio showcase with real-time category filtering (Web, Data Science, etc.).
-- **Experience Timeline**: Detailed professional and educational history in a structured vertical layout.
-- **Contact Form**: Functional, validated communication gateway with integration for EmailJS.
-- **Responsive Design**: Fully optimized for mobile, tablet, and desktop viewports.
-- **Reduced Motion Support**: Respects system-level accessibility settings for animations.
+- Responsive desktop sidebar and mobile navigation
+- Animated hero section with rotating roles and a lightweight spotlight/grid background
+- Interactive status/bento widgets
+- Skills grouped by category with proficiency labels
+- Filterable project showcase with repository preview images
+- Experience and education timeline
+- EmailJS contact form
+- Scroll progress and scroll-to-top controls
+- Custom cursor on pointer devices
+- Reduced-motion support
+- Responsive layout for mobile, tablet, and desktop
 
-## Tech Stack
+## Tech stack
 
-| Technology | Purpose |
-| :--- | :--- |
-| **React 18** | Core UI library for component-based architecture. |
-| **Vite** | Modern frontend build tool for fast development and bundling. |
-| **TypeScript** | Static typing for improved developer experience and code reliability. |
-| **Tailwind CSS** | Utility-first styling for high-fidelity responsive design. |
-| **Framer Motion** | Advanced physics-based animations and transitions. |
-| **Lucide React** | Clean, consistent iconography throughout the site. |
+| Technology | Role |
+| --- | --- |
+| React 18 | UI and component architecture |
+| TypeScript | Type-safe application code |
+| Vite | Development and production build tooling |
+| Tailwind CSS 4 | Styling and responsive layout |
+| Motion | UI transitions and interaction animations |
+| Lucide React | Icons |
+| EmailJS | Contact form delivery |
 
-## Project Structure
-```bash
+The project intentionally avoids adding a large animation framework such as GSAP or Three.js. Motion is sufficient for the current interaction layer.
+
+## Project structure
+
+```text
 src/
 ├── app/
 │   ├── components/
-│   │   ├── layout/       # Navigation, Custom Cursor, Scroll Progress
+│   │   ├── layout/       # Navbar, cursor, scroll controls
 │   │   ├── sections/     # Hero, About, Skills, Projects, Experience, Contact
-│   │   └── widgets/      # Interactive Bento widgets
-│   └── App.tsx           # Main application shell
-├── data/                 # JSON data for projects, skills, and experience
-├── hooks/                # Custom React hooks (useCountUp, useScrollSpy, etc.)
-├── main.tsx              # Application entry point
-└── index.css             # Global styles and tailwind directives
+│   │   └── widgets/      # Interactive hero widgets
+│   └── App.tsx
+├── data/                 # Project and skill data
+├── hooks/                # Reusable UI hooks
+├── styles/               # Tailwind/theme/global styles
+└── main.tsx
+public/
+└── cv/                   # Downloadable CV
 ```
 
-## Getting Started
+## Run locally
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+Prerequisites: Node.js 18+.
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Mzaq1559/PersonalPortfolio.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd PersonalPortfolio
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-### Running Locally
-To start the development server:
 ```bash
+git clone https://github.com/Mzaq1559/PortFolio.git
+cd PortFolio
+npm install
 npm run dev
 ```
 
+Production build:
+
+```bash
+npm run build
+```
+
 ## Deployment
-The project is configured for automated deployment to **GitHub Pages**. Simply push changes to the `main` branch, and the GitHub Action will automatically build and deploy the production bundle to the target URL.
+
+The portfolio is deployed to GitHub Pages at:
+
+https://mzaq1559.github.io/PortFolio/
 
 ## Connect
-- **Portfolio**: [mzaq1559.github.io/PersonalPortfolio/](https://mzaq1559.github.io/PersonalPortfolio/)
-- **Blog**: [My Learning Diary](https://mzaq1559.github.io/Blog_Website-My-Learning-Diary-/)
-- **LinkedIn**: [muhammad-zulqarnain-26276b319](https://www.linkedin.com/in/muhammad-zulqarnain-26276b319)
-- **GitHub**: [@Mzaq1559](https://github.com/Mzaq1559)
-- **Email**: [zulqarnain.dev@gmail.com](mailto:zulqarnain.dev@gmail.com)
+
+- **GitHub:** https://github.com/Mzaq1559
+- **LinkedIn:** https://www.linkedin.com/in/muhammad-zulqarnain-26276b319
+- **Learning Diary:** https://mzaq1559.github.io/My-Learning-Diary/
+- **Kaggle:** https://www.kaggle.com/mzaq1559
+
+---
+
+Built by **Muhammad Zulqarnain Abdullah**, UET Taxila · Computer Science.
