@@ -99,15 +99,23 @@ function ExperienceCard({ exp, index, isLast }: ExperienceCardProps) {
       {/* Connecting Line */}
       {!isLast && (
         <>
-          <div 
-            className="absolute left-6 md:left-1/2 top-8 w-0.5 -translate-x-1/2 z-0 hidden md:block"
+          <motion.div
+            className="absolute left-6 md:left-1/2 top-8 w-0.5 -translate-x-1/2 z-0 hidden md:block origin-top"
+            initial={prefersReducedMotion ? { scaleY: 1, opacity: 0.7 } : { scaleY: 0, opacity: 0.35 }}
+            whileInView={{ scaleY: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             style={{
               height: 'calc(100% + 3rem)',
               background: 'linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
             }}
           />
-          <div 
-            className="absolute left-6 top-8 w-0.5 -translate-x-1/2 z-0 md:hidden"
+          <motion.div
+            className="absolute left-6 top-8 w-0.5 -translate-x-1/2 z-0 md:hidden origin-top"
+            initial={prefersReducedMotion ? { scaleY: 1, opacity: 0.7 } : { scaleY: 0, opacity: 0.35 }}
+            whileInView={{ scaleY: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             style={{
               height: 'calc(100% + 3rem)',
               background: 'linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
