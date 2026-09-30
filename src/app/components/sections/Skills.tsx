@@ -192,6 +192,7 @@ function SkillCard({ skill, index }: SkillCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const level = skill.proficiency as ProficiencyLevel;
   const style = proficiencyStyles[level] ?? proficiencyStyles['Comfortable'];
+  const [pointer, setPointer] = useState({ x: 50, y: 50 });
 
   return (
     <motion.div
@@ -199,6 +200,17 @@ function SkillCard({ skill, index }: SkillCardProps) {
       style={{
         backgroundColor: 'var(--bg-glass)',
         border: '1px solid var(--border-subtle)',
+        backgroundImage: prefersReducedMotion
+          ? undefined
+          : `radial-gradient(16rem circle at ${pointer.x}% ${pointer.y}%, rgba(77,191,176,0.13), transparent 52%)`,
+      }}
+      onPointerMove={(event) => {
+        if (prefersReducedMotion) return;
+        const rect = event.currentTarget.getBoundingClientRect();
+        setPointer({
+          x: ((event.clientX - rect.left) / rect.width) * 100,
+          y: ((event.clientY - rect.top) / rect.height) * 100
+        });
       }}
       initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
       animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
