@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type KeyboardEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { skills } from '../../../data/skills';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
@@ -40,7 +40,7 @@ export function Skills() {
   const [activeTab, setActiveTab] = useState<keyof typeof skills>(defaultTab);
   const prefersReducedMotion = useReducedMotion();
 
-  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     const currentIndex = categories.indexOf(activeTab);
     if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
     event.preventDefault();
