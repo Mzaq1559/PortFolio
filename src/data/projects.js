@@ -33,7 +33,7 @@ export const projects = [
     title: "DocVision AI",
     description:
       "CV-based document scanner and intelligence app — document scanning, perspective correction, and text extraction using OpenCV and OCR, with a clean Streamlit interface.",
-    image: "https://images.unsplash.com/photo-1780394799121-fb7f67dce6b7?auto=format&fit=crop&w=1200&q=80",
+    image: "https://www.agimem.com/projects/crisp-document-scanner/screenshot-1.webp",
     category: "AI/ML",
     technologies: ["Python", "OpenCV", "OCR", "Streamlit"],
     date: "2026",
