@@ -127,6 +127,7 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, index, featured }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [pointer, setPointer] = useState({ x: 50, y: 50 });
   const [imageFailed, setImageFailed] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
@@ -149,8 +150,25 @@ function ProjectCard({ project, index, featured }: ProjectCardProps) {
       whileHover={prefersReducedMotion ? {} : { y: -6 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onPointerMove={(event) => {
+        if (prefersReducedMotion) return;
+        const rect = event.currentTarget.getBoundingClientRect();
+        setPointer({
+          x: ((event.clientX - rect.left) / rect.width) * 100,
+          y: ((event.clientY - rect.top) / rect.height) * 100
+        });
+      }}
     >
-      <div className={featured ? 'md:flex md:flex-row' : ''}>
+      {!prefersReducedMotion && (
+        <div
+          className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{
+            background: `radial-gradient(24rem circle at ${pointer.x}% ${pointer.y}%, rgba(77,191,176,0.16), transparent 42%)`
+          }}
+        />
+      )}
+
+      <div className={`relative z-0 ${featured ? 'md:flex md:flex-row' : ''}`}>
         <div className={`relative overflow-hidden ${
           featured ? 'md:w-1/2 aspect-[4/3]' : 'h-56'
         }`}>
@@ -170,6 +188,7 @@ function ProjectCard({ project, index, featured }: ProjectCardProps) {
             alt={`${project.title} project preview`}
             onError={() => setImageFailed(true)}
             className="w-full h-full object-cover"
+            style={{ transformOrigin: `${pointer.x}% ${pointer.y}%` }}
             width={800}
             height={600}
             loading="lazy"
