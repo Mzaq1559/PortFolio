@@ -159,7 +159,7 @@ export const projects = [
     title: "Student Management REST API",
     description:
       "A clean RESTful API for managing student information built with .NET 10 and C#. Demonstrates modern ASP.NET Core practices, complete CRUD operations, and includes interactive Swagger/OpenAPI documentation.",
-    image: "https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
     category: "Backend",
     technologies: ["C#", ".NET 10", "ASP.NET Core", "Swagger"],
     date: "2026",
@@ -172,7 +172,7 @@ export const projects = [
     title: "E-Commerce Behavior Analysis",
     description:
       "An end-to-end big data ETL pipeline processing ~100,000 user behavior records. Leverages the Hadoop ecosystem with Hive external tables for distributed storage and Python for generating conversion funnel and promotional effect insights.",
-    image: "https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80",
     category: "Data Engineering",
     technologies: ["Hadoop", "Hive", "Python", "Pandas", "Matplotlib", "Seaborn"],
     date: "2026",
@@ -185,7 +185,7 @@ export const projects = [
     title: "Go Assistant",
     description:
       "A floating screen overlay app for WeChat that captures live Go board states and queries Claude AI to recommend the best next move. Built with Flutter, featuring a responsive UI and custom floating bubble interaction.",
-    image: "https://images.unsplash.com/photo-1732258357096-457077a92429?auto=format&fit=crop&w=1200&q=80",
+    image: "https://media.wired.com/photos/59325dedaef9a462de98235c/master/w_2500,h_1667,c_limit/Go-04.jpg",
     category: "Mobile App",
     technologies: ["Flutter", "Dart", "Claude AI API"],
     date: "2026",
