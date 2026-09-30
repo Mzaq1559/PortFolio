@@ -73,13 +73,13 @@ export function About() {
             {/* Bio Paragraphs */}
             <div className="space-y-4 mb-8" style={{ color: 'var(--text-secondary)' }}>
               <p className="text-base leading-relaxed">
-                I started with programming and software development, building applications across C++, Python, JavaScript, React, FastAPI, and .NET. As I became more interested in how intelligent systems work, my focus gradually shifted toward machine learning and AI.
+                I got into computer science through programming and software development, and that naturally turned into building projects whenever I wanted to understand something better. I&apos;ve worked with C++, Python, JavaScript, React, FastAPI, and other tools along the way. More recently, I&apos;ve become much more interested in the ideas behind AI and machine learning, not just using ready-made models but understanding how these systems work.
               </p>
               <p className="text-base leading-relaxed">
-                I&apos;m now strengthening my ML foundations, experimenting with computer vision and LLM systems, and building practical projects around what I learn. My current interests include computer vision, machine learning and deep learning, RAG/LLM systems, and agentic AI. I learn by building and document that process publicly through my projects and Learning Diary.
+                Right now, I&apos;m going back to the foundations of ML and implementing concepts from scratch so I can understand them properly. At the same time, I&apos;m building projects around computer vision, deep learning, RAG and LLM systems, and agentic AI. I tend to learn through trial and error, and I keep a Learning Diary because I like documenting what I built, what broke, and what I learned from it.
               </p>
               <p className="text-base leading-relaxed">
-                I&apos;m currently pursuing my BS Computer Science at UET Taxila (2024–2028), with a 3.60/4.00 CGPA.
+                I&apos;m currently pursuing my BS Computer Science at UET Taxila (2024–2028), where I&apos;m in my 5th semester with a 3.60/4.00 CGPA.
               </p>
             </div>
 
