@@ -36,22 +36,19 @@ export function Hero() {
   const lastName = 'Abdullah';
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center px-6 md:px-16 lg:px-32 overflow-hidden">
-      {/* Soft pastel blobs */}
+    <section id="hero" className="relative min-h-screen flex items-center px-6 md:px-16 lg:px-24 xl:px-32 overflow-hidden">
+      {/* Lightweight spotlight/grid background — inspired by modern spotlight hero patterns. */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[100px] opacity-35 animate-[blob-drift_20s_ease-in-out_infinite]"
-          style={{ backgroundColor: 'var(--accent-primary)' }}
+          className="absolute -top-48 left-1/2 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full blur-3xl opacity-25"
+          style={{ background: 'radial-gradient(circle, var(--accent-primary), transparent 68%)' }}
         />
         <div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[100px] opacity-30 animate-[blob-drift_25s_ease-in-out_infinite_reverse]"
-          style={{ backgroundColor: 'var(--accent-second)' }}
-        />
-        <div
-          className="absolute inset-0 opacity-25"
+          className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `radial-gradient(circle, rgba(100, 116, 139, 0.35) 1px, transparent 1px)`,
-            backgroundSize: '48px 48px'
+            backgroundImage: 'linear-gradient(rgba(15,118,110,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(15,118,110,0.07) 1px, transparent 1px)',
+            backgroundSize: '64px 64px',
+            maskImage: 'linear-gradient(to bottom, black, transparent 82%)'
           }}
         />
       </div>
@@ -70,9 +67,9 @@ export function Hero() {
             </motion.p>
 
             <div className="mb-6 overflow-visible max-w-none sm:max-w-2xl lg:max-w-3xl">
-              <h1 className="font-display font-bold tracking-tight leading-[1.08] text-[clamp(1.25rem,2.5vw+0.75rem,2.5rem)]">
+              <h1 className="font-display font-bold tracking-[-0.04em] leading-[0.98] text-[clamp(2.4rem,5.4vw,5.4rem)]">
                 <motion.span
-                  className="block whitespace-nowrap"
+                  className="block"
                   style={{ color: 'var(--hero-name-line1)' }}
                   initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -81,7 +78,7 @@ export function Hero() {
                   {firstName}
                 </motion.span>
                 <motion.span
-                  className="block mt-1 sm:mt-2 whitespace-nowrap"
+                  className="block mt-1 sm:mt-2"
                   style={{
                     background: 'var(--hero-name-gradient)',
                     WebkitBackgroundClip: 'text',
@@ -197,14 +194,15 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Bento widgets — glass stack (visible on all breakpoints) */}
+          {/* Bento / status panel */}
           <div className="flex flex-col md:col-span-2 w-full min-h-[380px] md:min-h-[min(520px,72vh)] mt-6 md:mt-0">
             <div
-              className="flex-1 rounded-3xl p-4 border transition-all duration-300 hover:shadow-[var(--shadow-soft-hover)]"
+              className="relative flex-1 rounded-[2rem] p-4 border transition-all duration-300 hover:shadow-[var(--shadow-soft-hover)] overflow-hidden"
               style={{
-                background: 'var(--bg-glass)',
-                borderColor: 'var(--border-glass)',
-                boxShadow: 'var(--shadow-soft)'
+                background: 'rgba(255,255,255,0.42)',
+                borderColor: 'rgba(255,255,255,0.72)',
+                boxShadow: 'var(--shadow-soft)',
+                backdropFilter: 'blur(18px)'
               }}
             >
               <BentoWidgets />
