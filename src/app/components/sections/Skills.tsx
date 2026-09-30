@@ -40,6 +40,15 @@ export function Skills() {
   const [activeTab, setActiveTab] = useState<keyof typeof skills>(defaultTab);
   const prefersReducedMotion = useReducedMotion();
 
+  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    const currentIndex = categories.indexOf(activeTab);
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+    event.preventDefault();
+    const offset = event.key === 'ArrowRight' ? 1 : -1;
+    const next = categories[(currentIndex + offset + categories.length) % categories.length];
+    setActiveTab(next);
+  };
+
   return (
     <section
       id="skills"
@@ -82,8 +91,11 @@ export function Skills() {
             <button
               key={category}
               onClick={() => setActiveTab(category)}
+              onKeyDown={handleTabKeyDown}
               role="tab"
               aria-selected={activeTab === category}
+              aria-controls="skills-panel"
+              id={`skill-tab-${String(category).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
               tabIndex={activeTab === category ? 0 : -1}
               className="relative px-5 py-2.5 rounded-full font-mono text-sm uppercase tracking-wider transition-all duration-300"
               style={{
@@ -117,6 +129,9 @@ export function Skills() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
+            id="skills-panel"
+            role="tabpanel"
+            aria-labelledby={`skill-tab-${String(activeTab).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
             className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-20"
             initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 30 }}
             animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
@@ -180,7 +195,7 @@ function SkillCard({ skill, index }: SkillCardProps) {
 
   return (
     <motion.div
-      className="group p-5 rounded-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer flex flex-col gap-3"
+      className="group p-5 rounded-[1.25rem] transition-all duration-300 hover:-translate-y-1 cursor-default flex flex-col gap-3"
       style={{
         backgroundColor: 'var(--bg-glass)',
         border: '1px solid var(--border-subtle)',
