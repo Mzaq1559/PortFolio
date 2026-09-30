@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { useCountUp } from '../../../hooks/useCountUp';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { Live2DCompanion } from '../widgets/Live2DCompanion';
 
@@ -11,35 +10,11 @@ const stats = [
 ];
 
 export function About() {
-  const [isInView, setIsInView] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   return (
     <section 
       id="about" 
-      ref={sectionRef}
       className="py-24 px-6 md:px-10 relative overflow-hidden w-full max-w-full"
       style={{ backgroundColor: 'var(--bg-secondary)' }}
     >
@@ -67,7 +42,7 @@ export function About() {
                 className="font-mono text-[11px] uppercase tracking-widest mt-3 text-center"
                 style={{ color: 'var(--text-secondary)' }}
               >
-                Interactive · move your cursor
+                Interactive · desktop pointer
               </p>
             </div>
           </motion.div>
@@ -115,7 +90,6 @@ export function About() {
                 <StatCard
                   key={stat.label}
                   stat={stat}
-                  startCounting={isInView}
                   delay={index * 0.1}
                 />
               ))}
@@ -136,12 +110,10 @@ interface StatCardProps {
     special?: boolean;
     display?: string;
   };
-  startCounting: boolean;
   delay: number;
 }
 
 function StatCard({ stat, startCounting, delay }: StatCardProps) {
-  const count = useCountUp(stat.value, 2000, startCounting);
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -161,7 +133,7 @@ function StatCard({ stat, startCounting, delay }: StatCardProps) {
           backgroundClip: 'text'
         }}
       >
-        {stat.special ? '∞' : stat.display ? stat.display : count}
+        {stat.display ?? `${stat.value}${stat.suffix}`}
         {!stat.special && !stat.display && stat.suffix}
       </div>
       <div 
