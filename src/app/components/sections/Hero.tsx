@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Download, ArrowRight, Github, Linkedin, BookOpen, BarChart3 } from 'lucide-react';
-import { useTypewriter } from '../../../hooks/useTypewriter';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { BentoWidgets } from '../widgets/BentoWidgets';
 
@@ -16,7 +15,6 @@ const socialLinks = [
 
 export function Hero() {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const { displayedText } = useTypewriter("Hello, I'm", 100, 500);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -32,19 +30,6 @@ export function Hero() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const letterVariants = {
-    hidden: { y: 80, opacity: 0 },
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: i * 0.05,
-        duration: 0.6,
-        ease: [0.43, 0.13, 0.23, 0.96] as [number, number, number, number]
-      }
-    })
   };
 
   const firstName = 'Muhammad Zulqarnain';
@@ -79,27 +64,22 @@ export function Hero() {
               style={{ color: 'var(--accent-primary)' }}
               initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
               animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
-              transition={{ delay: 1.8, duration: 0.6 }}
+              transition={{ delay: 0.05, duration: 0.6 }}
             >
-              {displayedText}
+              Hello, I&apos;m
             </motion.p>
 
             <div className="mb-6 overflow-visible max-w-none sm:max-w-2xl lg:max-w-3xl">
               <h1 className="font-display font-bold tracking-tight leading-[1.08] text-[clamp(1.25rem,2.5vw+0.75rem,2.5rem)]">
-                <span className="block whitespace-nowrap" style={{ color: 'var(--hero-name-line1)' }}>
-                  {firstName.split('').map((char, i) => (
-                    <motion.span
-                      key={`f-${i}`}
-                      custom={i}
-                      variants={prefersReducedMotion ? {} : letterVariants}
-                      initial={prefersReducedMotion ? {} : 'hidden'}
-                      animate="visible"
-                      className="inline-block"
-                    >
-                      {char === ' ' ? '\u00A0' : char}
-                    </motion.span>
-                  ))}
-                </span>
+                <motion.span
+                  className="block whitespace-nowrap"
+                  style={{ color: 'var(--hero-name-line1)' }}
+                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
+                >
+                  {firstName}
+                </motion.span>
                 <motion.span
                   className="block mt-1 sm:mt-2 whitespace-nowrap"
                   style={{
@@ -144,7 +124,7 @@ export function Hero() {
               style={{ color: 'var(--text-secondary)' }}
               initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
               animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-              transition={{ delay: 2.4, duration: 0.6 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
             >
               I&apos;m a 5th-semester Computer Science student at UET Taxila building software while moving deeper into AI and machine learning. I&apos;ve worked across full-stack development, backend systems, computer vision, and LLM-powered applications, and I&apos;m currently strengthening my ML foundations by implementing concepts from scratch.
             </motion.p>
@@ -153,7 +133,7 @@ export function Hero() {
               className="flex flex-wrap gap-4 mb-10"
               initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
               animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-              transition={{ delay: 2.6, duration: 0.6 }}
+              transition={{ delay: 0.35, duration: 0.6 }}
             >
               <button
                 onClick={() => scrollToSection('#projects')}
@@ -190,7 +170,7 @@ export function Hero() {
               className="flex flex-wrap gap-3"
               initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
               animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-              transition={{ delay: 2.8, duration: 0.6 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
             >
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -220,7 +200,7 @@ export function Hero() {
           {/* Bento widgets — glass stack (visible on all breakpoints) */}
           <div className="flex flex-col md:col-span-2 w-full min-h-[380px] md:min-h-[min(520px,72vh)] mt-6 md:mt-0">
             <div
-              className="flex-1 rounded-3xl p-4 backdrop-blur-xl border transition-all duration-300 hover:shadow-[var(--shadow-soft-hover)]"
+              className="flex-1 rounded-3xl p-4 border transition-all duration-300 hover:shadow-[var(--shadow-soft-hover)]"
               style={{
                 background: 'var(--bg-glass)',
                 borderColor: 'var(--border-glass)',
