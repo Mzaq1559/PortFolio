@@ -170,12 +170,20 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-xl font-mono text-sm uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-glow)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--accent-glow)]"
+                className="group relative w-full overflow-hidden py-4 rounded-xl font-mono text-sm uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-glow)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--accent-glow)]"
                 style={{ background: 'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-second) 100%)', color: 'var(--bg-primary)' }}
               >
-                <span className="flex items-center justify-center gap-2">
+                {!prefersReducedMotion && !isSubmitting && (
+                  <motion.span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/25 blur-md"
+                    animate={{ x: ['0%', '420%'] }}
+                    transition={{ duration: 2.4, repeat: Infinity, repeatDelay: 1.8, ease: 'easeInOut' }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center justify-center gap-2">
                   {isSubmitting ? 'Opening email…' : 'Send Message'}
-                  <Send className="w-4 h-4" />
+                  <Send className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </button>
 
