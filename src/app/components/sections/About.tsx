@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { Live2DCompanion } from '../widgets/Live2DCompanion';
