@@ -123,7 +123,7 @@ export function Hero() {
               animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              I&apos;m a 5th-semester Computer Science student at UET Taxila building software while moving deeper into AI and machine learning. I&apos;ve worked across full-stack development, backend systems, computer vision, and LLM-powered applications, and I&apos;m currently strengthening my ML foundations by implementing concepts from scratch.
+              I&apos;m a 5th-semester Computer Science student at UET Taxila who likes learning by actually building things. I started out mostly interested in software development, but over time I&apos;ve found myself getting more curious about what happens behind intelligent systems. These days I&apos;m building full-stack apps, experimenting with computer vision and LLMs, and working through machine learning fundamentals one project at a time.
             </motion.p>
 
             <motion.div
