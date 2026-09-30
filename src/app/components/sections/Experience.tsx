@@ -86,7 +86,7 @@ function ExperienceCard({ exp, index, isLast }: ExperienceCardProps) {
   const isLeft = exp.side === 'left';
 
   return (
-    <div className={`relative ${isLeft ? 'md:pr-1/2' : 'md:pl-1/2'}`}>
+    <div className={`relative ${isLeft ? 'md:w-1/2 md:pr-8' : 'md:w-1/2 md:pl-8'}`}>
       {/* Timeline Dot */}
       <div 
         className="absolute left-6 md:left-1/2 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10"
@@ -124,7 +124,7 @@ function ExperienceCard({ exp, index, isLast }: ExperienceCardProps) {
         transition={{ delay: index * 0.2 }}
       >
         <div 
-          className="p-6 rounded-2xl backdrop-blur hover:shadow-[0_0_30px_var(--accent-glow)] transition-all duration-300"
+          className="p-6 rounded-2xl hover:shadow-[0_0_30px_var(--accent-glow)] transition-all duration-300"
           style={{
             backgroundColor: 'var(--bg-glass)',
             border: '1px solid var(--border-subtle)'
@@ -197,7 +197,7 @@ function EducationCard({ edu, index }: EducationCardProps) {
 
   return (
     <motion.div
-      className="p-6 rounded-2xl backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_var(--accent-glow)]"
+      className="p-6 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_var(--accent-glow)]"
       style={{
         backgroundColor: 'var(--bg-glass)',
         border: '1px solid var(--border-subtle)'
