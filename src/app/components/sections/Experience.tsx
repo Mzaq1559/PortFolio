@@ -86,7 +86,7 @@ function ExperienceCard({ exp, index, isLast }: ExperienceCardProps) {
   const isLeft = exp.side === 'left';
 
   return (
-    <div className={`relative ${isLeft ? 'md:w-1/2 md:pr-8' : 'md:w-1/2 md:pl-8'}`}>
+    <div className="relative w-full">
       {/* Timeline Dot */}
       <div 
         className="absolute left-6 md:left-1/2 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10"
@@ -117,7 +117,7 @@ function ExperienceCard({ exp, index, isLast }: ExperienceCardProps) {
       )}
 
       <motion.div
-        className={`ml-16 md:ml-0 ${isLeft ? 'md:mr-16' : 'md:ml-16'}`}
+        className={`ml-16 md:ml-0 w-[calc(100%-4rem)] md:w-[calc(50%-4rem)] ${isLeft ? 'md:mr-auto' : 'md:ml-auto'}`}
         initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: isLeft ? -60 : 60 }}
         whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
         viewport={{ once: true }}
