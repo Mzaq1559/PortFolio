@@ -127,17 +127,20 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, index, featured }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   return (
     <motion.div
       layout
-      className={`group relative rounded-2xl overflow-hidden ${
+      className={`group relative overflow-hidden rounded-[1.5rem] ${
         featured ? 'md:col-span-2' : ''
       }`}
       style={{
-        backgroundColor: 'var(--bg-glass)',
-        border: '1px solid var(--border-subtle)',
+        backgroundColor: 'rgba(255,255,255,0.48)',
+        border: '1px solid rgba(255,255,255,0.72)',
+        boxShadow: 'var(--shadow-soft)',
+        backdropFilter: 'blur(14px)',
       }}
       initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
       animate={{ opacity: 1, y: 0 }}
@@ -151,9 +154,21 @@ function ProjectCard({ project, index, featured }: ProjectCardProps) {
         <div className={`relative overflow-hidden ${
           featured ? 'md:w-1/2 aspect-[4/3]' : 'h-56'
         }`}>
+          {imageFailed ? (
+            <div
+              className="absolute inset-0 flex items-end p-6"
+              style={{
+                background:
+                  'linear-gradient(135deg, rgba(15,118,110,0.92), rgba(244,168,184,0.78))'
+              }}
+            >
+              <span className="font-display text-2xl font-bold text-white">{project.title}</span>
+            </div>
+          ) : (
           <motion.img
             src={project.image}
             alt={`${project.title} project preview`}
+            onError={() => setImageFailed(true)}
             className="w-full h-full object-cover"
             width={800}
             height={600}
@@ -162,6 +177,7 @@ function ProjectCard({ project, index, featured }: ProjectCardProps) {
             animate={prefersReducedMotion ? {} : { scale: isHovered ? 1.03 : 1 }}
             transition={{ duration: 0.3 }}
           />
+          )}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -194,7 +210,7 @@ function ProjectCard({ project, index, featured }: ProjectCardProps) {
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 rounded-full font-mono text-xs"
+                className="px-3 py-1.5 rounded-lg font-mono text-[11px]"
                 style={{
                   backgroundColor: 'rgba(77, 191, 176, 0.1)',
                   color: 'var(--accent-primary)',
