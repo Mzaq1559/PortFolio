@@ -67,7 +67,7 @@ export function Hero() {
             </motion.p>
 
             <div className="mb-6 overflow-visible max-w-none sm:max-w-2xl lg:max-w-3xl">
-              <h1 className="font-display font-bold tracking-[-0.04em] leading-[0.98] text-[clamp(2.2rem,4.2vw,4.25rem)]">
+              <h1 className="font-display font-bold tracking-[-0.04em] leading-[0.98] text-[clamp(2rem,3.4vw,3.5rem)]">
                 <motion.span
                   className="block"
                   style={{ color: 'var(--hero-name-line1)' }}
