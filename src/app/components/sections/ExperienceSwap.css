@@ -1,0 +1,27 @@
+/* Theme the CardSwap stack with the site's own CSS variables */
+.exp-swap-wrap {
+  position: relative;
+  height: 500px;
+}
+
+.exp-swap .card-swap-card {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.exp-swap .card-swap-card-rim {
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+}
+
+.exp-swap .card-swap-shade {
+  background: var(--bg-primary);
+}
+
+.exp-swap-body {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+  overflow-y: auto;
+  text-align: left;
+  scrollbar-width: thin;
+}
