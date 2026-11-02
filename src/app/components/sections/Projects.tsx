@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import { projects } from '../../../data/projects';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
+import ScrollStack, { ScrollStackItem } from '../widgets/ScrollStack';
 
 const categories = ['All', ...Array.from(new Set(projects.map((project) => project.category)))];
 
@@ -21,7 +22,7 @@ export function Projects() {
       className="py-24 px-6 md:px-16 lg:px-32"
       style={{ backgroundColor: 'var(--bg-secondary)' }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -69,24 +70,32 @@ export function Projects() {
           ))}
         </motion.div>
 
-        <motion.div
-          layout
-          className="grid grid-flow-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+        {/* Keyed by filter so the stack resets to the first project on each change */}
+        <ScrollStack
+          key={activeFilter}
+          useWindowScroll
+          itemDistance={60}
+          itemStackDistance={18}
+          stackPosition="22%"
+          baseScale={0.9}
+          itemScale={0.04}
+          dimAmount={0.25}
+          holdDistance={120}
+          snap={false}
         >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-                featured={project.featured}
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+          {filteredProjects.map((project) => (
+            <ScrollStackItem
+              key={project.id}
+              itemClassName="!p-0 overflow-hidden"
+              style={{ height: 'auto', backgroundColor: 'rgba(255,255,255,0.96)' }}
+            >
+              <ProjectCard project={project} />
+            </ScrollStackItem>
+          ))}
+        </ScrollStack>
 
         <motion.div
-          className="text-center"
+          className="text-center mt-12"
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -121,157 +130,103 @@ interface ProjectCardProps {
     liveUrl: string | null;
     githubUrl: string;
   };
-  index: number;
-  featured: boolean;
 }
 
-function ProjectCard({ project, index, featured }: ProjectCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [pointer, setPointer] = useState({ x: 50, y: 50 });
+function ProjectCard({ project }: ProjectCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
 
   return (
-    <motion.div
-      layout
-      className={`group relative overflow-hidden rounded-[1.5rem] ${
-        featured ? 'md:col-span-2' : ''
-      }`}
-      style={{
-        backgroundColor: 'rgba(255,255,255,0.48)',
-        border: '1px solid rgba(255,255,255,0.72)',
-        boxShadow: 'var(--shadow-soft)',
-        backdropFilter: 'blur(14px)',
-      }}
-      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -12 }}
-      transition={{ duration: 0.35, delay: prefersReducedMotion ? 0 : Math.min(index * 0.04, 0.2) }}
-      whileHover={prefersReducedMotion ? {} : { y: -6 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onPointerMove={(event) => {
-        if (prefersReducedMotion) return;
-        const rect = event.currentTarget.getBoundingClientRect();
-        setPointer({
-          x: ((event.clientX - rect.left) / rect.width) * 100,
-          y: ((event.clientY - rect.top) / rect.height) * 100
-        });
-      }}
-    >
-      {!prefersReducedMotion && (
-        <div
-          className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(24rem circle at ${pointer.x}% ${pointer.y}%, rgba(77,191,176,0.16), transparent 42%)`
-          }}
-        />
-      )}
-
-      <div className={`relative z-0 ${featured ? 'md:flex md:flex-row' : ''}`}>
-        <div className={`relative overflow-hidden ${
-          featured ? 'md:w-1/2 aspect-[4/3]' : 'h-56'
-        }`}>
-          {imageFailed ? (
-            <div
-              className="absolute inset-0 flex items-end p-6"
-              style={{
-                background:
-                  'linear-gradient(135deg, rgba(15,118,110,0.92), rgba(244,168,184,0.78))'
-              }}
-            >
-              <span className="font-display text-2xl font-bold text-white">{project.title}</span>
-            </div>
-          ) : (
-          <motion.img
+    <div className="flex flex-col md:flex-row h-full">
+      <div className="relative overflow-hidden h-56 md:h-auto md:w-1/2 md:min-h-[340px]">
+        {imageFailed ? (
+          <div
+            className="absolute inset-0 flex items-end p-6"
+            style={{
+              background: 'linear-gradient(135deg, rgba(15,118,110,0.92), rgba(244,168,184,0.78))',
+            }}
+          >
+            <span className="font-display text-2xl font-bold text-white">{project.title}</span>
+          </div>
+        ) : (
+          <img
             src={project.image}
             alt={`${project.title} project preview`}
             onError={() => setImageFailed(true)}
-            className="w-full h-full object-cover"
-            style={{ transformOrigin: `${pointer.x}% ${pointer.y}%` }}
+            className="absolute inset-0 w-full h-full object-cover"
             width={800}
             height={600}
             loading="lazy"
             decoding="async"
-            animate={prefersReducedMotion ? {} : { scale: isHovered ? 1.03 : 1 }}
-            transition={{ duration: 0.3 }}
+            draggable={false}
           />
-          )}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                'linear-gradient(180deg, transparent 50%, rgba(15, 23, 42, 0.2) 100%)',
-            }}
-          />
+        )}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'linear-gradient(180deg, transparent 50%, rgba(15, 23, 42, 0.2) 100%)' }}
+        />
+      </div>
+
+      <div className="p-6 md:p-8 md:w-1/2 flex flex-col justify-center">
+        <h3
+          className="font-display text-xl md:text-2xl font-bold mb-3"
+          style={{ color: 'var(--text-primary)' }}
+        >
+          {project.title}
+        </h3>
+
+        <p
+          className="text-sm md:text-base mb-4 leading-relaxed"
+          style={{ color: 'var(--text-secondary)' }}
+        >
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1.5 rounded-lg font-mono text-[11px]"
+              style={{
+                backgroundColor: 'rgba(77, 191, 176, 0.1)',
+                color: 'var(--accent-primary)',
+                border: '1px solid rgba(77, 191, 176, 0.2)',
+              }}
+            >
+              {tech}
+            </span>
+          ))}
         </div>
 
-        <div
-          className={`p-6 ${
-            featured ? 'md:w-1/2 md:flex md:flex-col md:justify-center' : ''
-          }`}
-        >
-          <h3
-            className="font-display text-xl md:text-2xl font-bold mb-3"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            {project.title}
-          </h3>
-
-          <p
-            className="text-sm md:text-base mb-4 leading-relaxed"
-            style={{ color: 'var(--text-secondary)' }}
-          >
-            {project.description}
-          </p>
-
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1.5 rounded-lg font-mono text-[11px]"
-                style={{
-                  backgroundColor: 'rgba(77, 191, 176, 0.1)',
-                  color: 'var(--accent-primary)',
-                  border: '1px solid rgba(77, 191, 176, 0.2)',
-                }}
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-5 flex flex-wrap gap-3">
-            {project.liveUrl && /^https?:\/\//.test(project.liveUrl) && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wide transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
-                style={{
-                  backgroundColor: 'var(--accent-primary)',
-                  color: 'var(--bg-primary)',
-                }}
-              >
-                Live Demo <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            )}
+        <div className="mt-5 flex flex-wrap gap-3">
+          {project.liveUrl && /^https?:\/\//.test(project.liveUrl) && (
             <a
-              href={project.githubUrl}
+              href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wide transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
               style={{
-                color: 'var(--text-primary)',
-                border: '1px solid var(--border-subtle)',
-                backgroundColor: 'rgba(255,255,255,0.45)',
+                backgroundColor: 'var(--accent-primary)',
+                color: 'var(--bg-primary)',
               }}
             >
-              GitHub <Github className="w-3.5 h-3.5" />
+              Live Demo <ExternalLink className="w-3.5 h-3.5" />
             </a>
-          </div>
+          )}
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wide transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+            style={{
+              color: 'var(--text-primary)',
+              border: '1px solid var(--border-subtle)',
+              backgroundColor: 'rgba(255,255,255,0.45)',
+            }}
+          >
+            GitHub <Github className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
