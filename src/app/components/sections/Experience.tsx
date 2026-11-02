@@ -40,10 +40,10 @@ export function Experience() {
         <div className="exp-swap-wrap mb-20">
           <CardSwap
             className="exp-swap"
-            width={480}
-            height={440}
-            cardDistance={44}
-            verticalDistance={56}
+            width={640}
+            height={560}
+            cardDistance={56}
+            verticalDistance={72}
             delay={5000}
             autoplay
             pauseOnHover
@@ -57,13 +57,13 @@ export function Experience() {
                   <div className="mb-4">{exp.logo}</div>
 
                   <h3
-                    className="font-display text-xl font-bold mb-1"
+                    className="font-display text-2xl font-bold mb-1"
                     style={{ color: 'var(--text-primary)' }}
                   >
                     {exp.role}
                   </h3>
                   <p
-                    className="font-display text-base"
+                    className="font-display text-lg"
                     style={{ color: 'var(--accent-primary)', fontWeight: 600 }}
                   >
                     {exp.company}
@@ -79,11 +79,11 @@ export function Experience() {
                     {exp.responsibilities.map((resp, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-3 text-sm"
+                        className="flex items-start gap-3 text-base"
                         style={{ color: 'var(--text-secondary)' }}
                       >
                         <span
-                          className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                          className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
                           style={{ backgroundColor: 'var(--accent-primary)' }}
                         />
                         <span>{resp}</span>
