@@ -2,11 +2,14 @@ import { useState, type KeyboardEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { skills } from '../../../data/skills';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
+import CurvedLoop from '../widgets/CurvedLoop';
 
 type ProficiencyLevel = 'Proficient' | 'Comfortable' | 'Learning';
 
 const categories = Object.keys(skills) as Array<keyof typeof skills>;
 const defaultTab = categories[0] as keyof typeof skills;
+
+const marqueeSkills = 'React • TypeScript • FastAPI • SQL Server • Python • C++ • AI/ML • Full-Stack';
 
 /* ── Proficiency badge style map ─────────────────────────────── */
 const proficiencyStyles: Record<
@@ -58,7 +61,7 @@ export function Skills() {
       <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10"
           initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -76,6 +79,24 @@ export function Skills() {
             Technologies &amp; Tools
           </h2>
         </motion.div>
+
+        {/* Curved skills marquee */}
+        <div
+          className="mb-10 overflow-hidden [&>div]:!min-h-0 [&>div]:!py-2"
+          style={{ color: 'var(--accent-primary)' }}
+          aria-hidden="true"
+        >
+          <CurvedLoop
+            marqueeText={marqueeSkills}
+            shape="line"
+            fontSize={56}
+            fontWeight={700}
+            speed={1}
+            interactive
+            pauseOnHover
+            edgeFade={0.15}
+          />
+        </div>
 
         {/* Category Tabs */}
         <motion.div
