@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Mail, MapPin, Clock, Send, Github, Linkedin, BookOpen, BarChart3 } from 'lucide-react';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
+import GlassSurface from '../widgets/GlassSurface';
 
 const contactInfo = [
   { icon: Mail, label: 'Email', value: 'muhammadzulqarnain1559@gmail.com', href: 'mailto:muhammadzulqarnain1559@gmail.com' },
@@ -77,7 +78,7 @@ export function Contact() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -129,68 +130,84 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} noValidate className={shake ? 'animate-[shake_0.5s]' : ''}>
-              {[
-                { field: 'name', label: 'Your Name', type: 'text' },
-                { field: 'email', label: 'Your Email', type: 'email' },
-                { field: 'subject', label: 'Subject', type: 'text' }
-              ].map(({ field, label, type }) => (
-                <div className="mb-6" key={field}>
-                  <label htmlFor={field} className="sr-only">{label}</label>
-                  <input
-                    id={field}
-                    type={type}
-                    placeholder={label}
-                    value={formData[field as keyof typeof formData]}
-                    onChange={(e) => handleInputChange(field, e.target.value)}
-                    autoComplete={field === 'name' ? 'name' : field === 'email' ? 'email' : 'off'}
-                    aria-invalid={Boolean(errors[field])}
-                    aria-describedby={errors[field] ? `${field}-error` : undefined}
-                    className="w-full px-6 py-4 rounded-xl font-mono text-sm transition-all duration-300 bg-white/40 border-2 border-[var(--border-subtle)] text-[var(--text-primary)] placeholder:text-slate-500 focus-visible:outline-none focus-visible:border-[var(--accent-primary)] focus-visible:ring-4 focus-visible:ring-[var(--accent-glow)]"
-                  />
-                  {errors[field] && <p id={`${field}-error`} className="mt-2 text-sm text-red-600">{errors[field]}</p>}
-                </div>
-              ))}
-
-              <div className="mb-6">
-                <label htmlFor="message" className="sr-only">Your Message</label>
-                <textarea
-                  id="message"
-                  placeholder="Your Message"
-                  value={formData.message}
-                  onChange={(e) => handleInputChange('message', e.target.value)}
-                  rows={5}
-                  aria-invalid={Boolean(errors.message)}
-                  aria-describedby={errors.message ? 'message-error' : undefined}
-                  className="w-full px-6 py-4 rounded-xl font-mono text-sm transition-all duration-300 resize-none bg-white/40 border-2 border-[var(--border-subtle)] text-[var(--text-primary)] placeholder:text-slate-500 focus-visible:outline-none focus-visible:border-[var(--accent-primary)] focus-visible:ring-4 focus-visible:ring-[var(--accent-glow)]"
-                />
-                {errors.message && <p id="message-error" className="mt-2 text-sm text-red-600">{errors.message}</p>}
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="group relative w-full overflow-hidden py-4 rounded-xl font-mono text-sm uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-glow)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--accent-glow)]"
-                style={{ background: 'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-second) 100%)', color: 'var(--bg-primary)' }}
+            <GlassSurface
+              width="100%"
+              height="auto"
+              borderRadius={24}
+              blur={11}
+              displace={0.5}
+              distortionScale={-180}
+              backgroundOpacity={0.12}
+              saturation={1.1}
+              className="w-full"
+            >
+              <form
+                onSubmit={handleSubmit}
+                noValidate
+                className={`w-full p-8 md:p-10 ${shake ? 'animate-[shake_0.5s]' : ''}`}
               >
-                {!prefersReducedMotion && !isSubmitting && (
-                  <motion.span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/25 blur-md"
-                    animate={{ x: ['0%', '420%'] }}
-                    transition={{ duration: 2.4, repeat: Infinity, repeatDelay: 1.8, ease: 'easeInOut' }}
-                  />
-                )}
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  {isSubmitting ? 'Opening email…' : 'Send Message'}
-                  <Send className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </button>
+                {[
+                  { field: 'name', label: 'Your Name', type: 'text' },
+                  { field: 'email', label: 'Your Email', type: 'email' },
+                  { field: 'subject', label: 'Subject', type: 'text' }
+                ].map(({ field, label, type }) => (
+                  <div className="mb-6" key={field}>
+                    <label htmlFor={field} className="sr-only">{label}</label>
+                    <input
+                      id={field}
+                      type={type}
+                      placeholder={label}
+                      value={formData[field as keyof typeof formData]}
+                      onChange={(e) => handleInputChange(field, e.target.value)}
+                      autoComplete={field === 'name' ? 'name' : field === 'email' ? 'email' : 'off'}
+                      aria-invalid={Boolean(errors[field])}
+                      aria-describedby={errors[field] ? `${field}-error` : undefined}
+                      className="w-full px-6 py-4 rounded-xl font-mono text-sm transition-all duration-300 bg-white/40 border-2 border-[var(--border-subtle)] text-[var(--text-primary)] placeholder:text-slate-500 focus-visible:outline-none focus-visible:border-[var(--accent-primary)] focus-visible:ring-4 focus-visible:ring-[var(--accent-glow)]"
+                    />
+                    {errors[field] && <p id={`${field}-error`} className="mt-2 text-sm text-red-600">{errors[field]}</p>}
+                  </div>
+                ))}
 
-              <p className="mt-3 text-center text-xs" style={{ color: 'var(--text-secondary)' }}>
-                Submitting opens your email app with the message pre-filled.
-              </p>
-            </form>
+                <div className="mb-6">
+                  <label htmlFor="message" className="sr-only">Your Message</label>
+                  <textarea
+                    id="message"
+                    placeholder="Your Message"
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    rows={5}
+                    aria-invalid={Boolean(errors.message)}
+                    aria-describedby={errors.message ? 'message-error' : undefined}
+                    className="w-full px-6 py-4 rounded-xl font-mono text-sm transition-all duration-300 resize-none bg-white/40 border-2 border-[var(--border-subtle)] text-[var(--text-primary)] placeholder:text-slate-500 focus-visible:outline-none focus-visible:border-[var(--accent-primary)] focus-visible:ring-4 focus-visible:ring-[var(--accent-glow)]"
+                  />
+                  {errors.message && <p id="message-error" className="mt-2 text-sm text-red-600">{errors.message}</p>}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="group relative w-full overflow-hidden py-4 rounded-xl font-mono text-sm uppercase tracking-wider transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-glow)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--accent-glow)]"
+                  style={{ background: 'linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-second) 100%)', color: 'var(--bg-primary)' }}
+                >
+                  {!prefersReducedMotion && !isSubmitting && (
+                    <motion.span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/25 blur-md"
+                      animate={{ x: ['0%', '420%'] }}
+                      transition={{ duration: 2.4, repeat: Infinity, repeatDelay: 1.8, ease: 'easeInOut' }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {isSubmitting ? 'Opening email…' : 'Send Message'}
+                    <Send className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </button>
+
+                <p className="mt-3 text-center text-xs" style={{ color: 'var(--text-secondary)' }}>
+                  Submitting opens your email app with the message pre-filled.
+                </p>
+              </form>
+            </GlassSurface>
           </motion.div>
         </div>
       </div>
