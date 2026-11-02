@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Download, ArrowRight, Github, Linkedin, BookOpen, BarChart3 } from 'lucide-react';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { BentoWidgets } from '../widgets/BentoWidgets';
+import DecryptedText from '../widgets/DecryptedText';
 
 const roles = ['Software Developer', 'AI/ML Engineer in Progress', 'CS Student @ UET Taxila'];
 
@@ -132,7 +133,14 @@ export function Hero() {
                   exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
                 >
-                  {roles[currentRoleIndex]}
+                  <DecryptedText
+                    text={roles[currentRoleIndex]}
+                    animateOn="view"
+                    sequential
+                    revealDirection="start"
+                    speed={35}
+                    maxIterations={14}
+                  />
                 </motion.h2>
               </AnimatePresence>
             </div>
