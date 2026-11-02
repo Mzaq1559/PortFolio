@@ -4,6 +4,7 @@ import { Download, ArrowRight, Github, Linkedin, BookOpen, BarChart3 } from 'luc
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import { BentoWidgets } from '../widgets/BentoWidgets';
 import DecryptedText from '../widgets/DecryptedText';
+import Aurora from '../widgets/Aurora';
 
 const roles = ['Software Developer', 'AI/ML Engineer in Progress', 'CS Student @ UET Taxila'];
 
@@ -50,8 +51,24 @@ export function Hero() {
         });
       }}
     >
-      {/* Lightweight spotlight/grid background — inspired by modern spotlight hero patterns. */}
+      {/* Background: aurora wash, spotlight and grid */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {!prefersReducedMotion && (
+          <div className="absolute inset-0 opacity-60">
+            <Aurora
+              colorStops={['#4dbfb0', '#f4a8b8', '#4dbfb0']}
+              lightMode
+              layers={2}
+              blend={0.6}
+              amplitude={1.1}
+              speed={0.5}
+              height={0.5}
+              glow={0.6}
+              mouseInteraction={false}
+              opacity={0.9}
+            />
+          </div>
+        )}
         <motion.div
           className="absolute h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full"
           animate={prefersReducedMotion ? {} : { left: `${spotlight.x}%`, top: `${spotlight.y}%` }}
