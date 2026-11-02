@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { skills } from '../../../data/skills';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
 import CurvedLoop from '../widgets/CurvedLoop';
+import ChromaGrid, { type ChromaItem } from '../widgets/ChromaGrid';
 
 type ProficiencyLevel = 'Proficient' | 'Comfortable' | 'Learning';
 
@@ -14,7 +15,7 @@ const marqueeSkills = 'React • TypeScript • FastAPI • SQL Server • Pytho
 /* ── Proficiency badge style map ─────────────────────────────── */
 const proficiencyStyles: Record<
   ProficiencyLevel,
-  { label: string; bg: string; color: string; border: string; borderStyle?: string }
+  { label: string; bg: string; color: string; border: string; borderStyle?: string; accent: string }
 > = {
   Proficient: {
     label: 'Proficient',
@@ -22,6 +23,7 @@ const proficiencyStyles: Record<
     color: '#2a9d8f',
     border: '1.5px solid #4dbfb0',
     borderStyle: 'solid',
+    accent: '#4dbfb0',
   },
   Comfortable: {
     label: 'Comfortable',
@@ -29,6 +31,7 @@ const proficiencyStyles: Record<
     color: '#0f766e',
     border: '1.5px solid #0f766e',
     borderStyle: 'solid',
+    accent: '#0f766e',
   },
   Learning: {
     label: 'Learning',
@@ -36,7 +39,15 @@ const proficiencyStyles: Record<
     color: '#94a3b8',
     border: '1.5px dashed #94a3b8',
     borderStyle: 'dashed',
+    accent: '#94a3b8',
   },
+};
+
+/* Skills have emoji icons, not photos, so each icon is drawn into a small SVG tile for the grid. */
+const iconArt = (icon: string) => {
+  const glyph = String(icon ?? '').replace(/[<&>"']/g, '');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6f7f4"/><stop offset="1" stop-color="#b8e6df"/></linearGradient></defs><rect width="400" height="300" fill="url(#g)"/><text x="200" y="168" font-size="110" text-anchor="middle" font-family="Segoe UI Emoji, Apple Color Emoji, Noto Color Emoji, sans-serif">${glyph}</text></svg>`;
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 };
 
 export function Skills() {
@@ -52,6 +63,18 @@ export function Skills() {
     setActiveTab(next);
   };
 
+  const chromaItems: ChromaItem[] = (skills[activeTab] ?? []).map((skill) => {
+    const level = skill.proficiency as ProficiencyLevel;
+    const style = proficiencyStyles[level] ?? proficiencyStyles['Comfortable'];
+    return {
+      image: iconArt(skill.icon),
+      title: skill.name,
+      subtitle: style.label,
+      accent: style.accent,
+      alt: `${skill.name} icon`,
+    };
+  });
+
   return (
     <section
       id="skills"
@@ -59,27 +82,6 @@ export function Skills() {
       style={{ backgroundColor: 'var(--bg-primary)' }}
     >
       <div className="max-w-6xl mx-auto">
-        {/* Section Heading */}
-        <motion.div
-          className="text-center mb-10"
-          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
-          whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <p
-            className="font-mono text-sm uppercase tracking-widest mb-4"
-            style={{ color: 'var(--accent-primary)' }}
-          >
-            &lt; MY SKILLS /&gt;
-          </p>
-          <h2
-            className="font-display text-4xl md:text-5xl font-bold"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            Technologies &amp; Tools
-          </h2>
-        </motion.div>
-
         {/* Curved skills marquee */}
         <div
           className="mb-10 overflow-hidden [&>div]:!min-h-0 [&>div]:!py-2"
@@ -153,15 +155,25 @@ export function Skills() {
             id="skills-panel"
             role="tabpanel"
             aria-labelledby={`skill-tab-${String(activeTab).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-20"
+            className="mb-20"
             initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 30 }}
             animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.3 }}
           >
-            {(skills[activeTab] ?? []).map((skill, index) => (
-              <SkillCard key={skill.name} skill={skill} index={index} />
-            ))}
+            <ChromaGrid
+              items={chromaItems}
+              columns={4}
+              minCardWidth={170}
+              gap={14}
+              aspectRatio="4 / 3"
+              theme="light"
+              reveal="spotlight"
+              grayscale={0}
+              dim={0}
+              radius={240}
+              cardRadius={20}
+            />
           </motion.div>
         </AnimatePresence>
 
@@ -196,73 +208,5 @@ export function Skills() {
         </motion.div>
       </div>
     </section>
-  );
-}
-
-/* ── SkillCard ───────────────────────────────────────────────── */
-interface SkillCardProps {
-  skill: {
-    name: string;
-    proficiency: string;
-    icon: string;
-  };
-  index: number;
-}
-
-function SkillCard({ skill, index }: SkillCardProps) {
-  const prefersReducedMotion = useReducedMotion();
-  const level = skill.proficiency as ProficiencyLevel;
-  const style = proficiencyStyles[level] ?? proficiencyStyles['Comfortable'];
-  const [pointer, setPointer] = useState({ x: 50, y: 50 });
-
-  return (
-    <motion.div
-      className="group p-5 rounded-[1.25rem] transition-all duration-300 hover:-translate-y-1 cursor-default flex flex-col gap-3"
-      style={{
-        backgroundColor: 'var(--bg-glass)',
-        border: '1px solid var(--border-subtle)',
-        backgroundImage: prefersReducedMotion
-          ? undefined
-          : `radial-gradient(16rem circle at ${pointer.x}% ${pointer.y}%, rgba(77,191,176,0.13), transparent 52%)`,
-      }}
-      onPointerMove={(event) => {
-        if (prefersReducedMotion) return;
-        const rect = event.currentTarget.getBoundingClientRect();
-        setPointer({
-          x: ((event.clientX - rect.left) / rect.width) * 100,
-          y: ((event.clientY - rect.top) / rect.height) * 100
-        });
-      }}
-      initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
-      animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
-      whileHover={{
-        borderColor: 'var(--accent-primary)',
-        boxShadow: '0 0 20px var(--accent-glow)',
-      }}
-    >
-      {/* Icon */}
-      <div className="text-3xl">{skill.icon}</div>
-
-      {/* Name */}
-      <h3
-        className="font-display font-semibold text-base leading-snug"
-        style={{ color: 'var(--text-primary)' }}
-      >
-        {skill.name}
-      </h3>
-
-      {/* Proficiency Badge */}
-      <span
-        className="self-start px-2.5 py-0.5 rounded-full font-mono text-xs tracking-wide"
-        style={{
-          background: style.bg,
-          color: style.color,
-          border: style.border,
-        }}
-      >
-        {style.label}
-      </span>
-    </motion.div>
   );
 }
