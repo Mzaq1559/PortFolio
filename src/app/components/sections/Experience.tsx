@@ -2,6 +2,8 @@ import { motion } from 'motion/react';
 import React from 'react';
 import { experience, education } from '../../../data/experience';
 import { useReducedMotion } from '../../../hooks/useReducedMotion';
+import CardSwap, { Card } from '../widgets/CardSwap';
+import './ExperienceSwap.css';
 
 export function Experience() {
   const prefersReducedMotion = useReducedMotion();
@@ -34,14 +36,64 @@ export function Experience() {
           </h2>
         </motion.div>
 
-        {/* Experience Timeline */}
-        <div className="relative mb-20">
-          {/* Experience Items */}
-          <div className="space-y-12">
-            {experience.map((exp, index) => (
-              <ExperienceCard key={exp.id} exp={exp} index={index} isLast={index === experience.length - 1} />
+        {/* Experience Card Stack */}
+        <div className="exp-swap-wrap mb-20">
+          <CardSwap
+            className="exp-swap"
+            width={480}
+            height={440}
+            cardDistance={44}
+            verticalDistance={56}
+            delay={5000}
+            autoplay
+            pauseOnHover
+            draggable
+            visibleCards={4}
+            theme="light"
+          >
+            {experience.map((exp) => (
+              <Card key={exp.id}>
+                <div className="exp-swap-body">
+                  <div className="mb-4">{exp.logo}</div>
+
+                  <h3
+                    className="font-display text-xl font-bold mb-1"
+                    style={{ color: 'var(--text-primary)' }}
+                  >
+                    {exp.role}
+                  </h3>
+                  <p
+                    className="font-display text-base"
+                    style={{ color: 'var(--accent-primary)', fontWeight: 600 }}
+                  >
+                    {exp.company}
+                  </p>
+                  <p
+                    className="font-mono text-sm mt-1 mb-4"
+                    style={{ color: 'var(--text-secondary)' }}
+                  >
+                    {exp.period}
+                  </p>
+
+                  <ul className="space-y-2">
+                    {exp.responsibilities.map((resp, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-sm"
+                        style={{ color: 'var(--text-secondary)' }}
+                      >
+                        <span
+                          className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: 'var(--accent-primary)' }}
+                        />
+                        <span>{resp}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Card>
             ))}
-          </div>
+          </CardSwap>
         </div>
 
         {/* Education Section */}
@@ -65,128 +117,6 @@ export function Experience() {
         </motion.div>
       </div>
     </section>
-  );
-}
-
-interface ExperienceCardProps {
-  exp: {
-    company: string;
-    role: string;
-    period: string;
-    logo: React.ReactNode;
-    responsibilities: string[];
-    side: string;
-  };
-  index: number;
-  isLast: boolean;
-}
-
-function ExperienceCard({ exp, index, isLast }: ExperienceCardProps) {
-  const prefersReducedMotion = useReducedMotion();
-  const isLeft = exp.side === 'left';
-
-  return (
-    <div className="relative w-full">
-      {/* Timeline Dot */}
-      <div 
-        className="absolute left-6 md:left-1/2 top-8 w-4 h-4 rounded-full -translate-x-1/2 z-10"
-        style={{
-          backgroundColor: 'var(--accent-primary)',
-          boxShadow: '0 0 12px var(--accent-primary)'
-        }}
-      />
-
-      {/* Connecting Line */}
-      {!isLast && (
-        <>
-          <motion.div
-            className="absolute left-6 md:left-1/2 top-8 w-0.5 -translate-x-1/2 z-0 hidden md:block origin-top"
-            initial={prefersReducedMotion ? { scaleY: 1, opacity: 0.7 } : { scaleY: 0, opacity: 0.35 }}
-            whileInView={{ scaleY: 1, opacity: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              height: 'calc(100% + 3rem)',
-              background: 'linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
-            }}
-          />
-          <motion.div
-            className="absolute left-6 top-8 w-0.5 -translate-x-1/2 z-0 md:hidden origin-top"
-            initial={prefersReducedMotion ? { scaleY: 1, opacity: 0.7 } : { scaleY: 0, opacity: 0.35 }}
-            whileInView={{ scaleY: 1, opacity: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              height: 'calc(100% + 3rem)',
-              background: 'linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-second) 100%)'
-            }}
-          />
-        </>
-      )}
-
-      <motion.div
-        className={`ml-16 md:ml-0 w-[calc(100%-4rem)] md:w-[calc(50%-4rem)] ${isLeft ? 'md:mr-auto' : 'md:ml-auto'}`}
-        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: isLeft ? -60 : 60 }}
-        whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: index * 0.2 }}
-      >
-        <div 
-          className="p-6 rounded-2xl hover:shadow-[0_0_30px_var(--accent-glow)] transition-all duration-300"
-          style={{
-            backgroundColor: 'var(--bg-glass)',
-            border: '1px solid var(--border-subtle)'
-          }}
-        >
-          {/* Logo */}
-          <div className="mb-4">{exp.logo}</div>
-
-          {/* Company & Role */}
-          <div className="mb-3">
-            <h3 
-              className="font-display text-xl md:text-2xl font-bold mb-1"
-              style={{ color: 'var(--text-primary)' }}
-            >
-              {exp.role}
-            </h3>
-            <p 
-              className="font-display text-lg"
-              style={{ 
-                color: 'var(--accent-primary)',
-                fontWeight: 600
-              }}
-            >
-              {exp.company}
-            </p>
-          </div>
-
-          {/* Period */}
-          <p 
-            className="font-mono text-sm mb-4"
-            style={{ color: 'var(--text-secondary)' }}
-          >
-            {exp.period}
-          </p>
-
-          {/* Responsibilities */}
-          <ul className="space-y-2">
-            {exp.responsibilities.map((resp, i) => (
-              <li 
-                key={i}
-                className="flex items-start gap-3 text-sm"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                <span 
-                  className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: 'var(--accent-primary)' }}
-                />
-                <span>{resp}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </motion.div>
-    </div>
   );
 }
 
